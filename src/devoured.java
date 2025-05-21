@@ -13,6 +13,8 @@ public class devoured {
 
     static int pontos = 0;
 
+    static String [] habilidades = new String[3]; 
+
     public static String registroPlayer() {
         System.out.println("Bem-vindo(a) ao Devoured, digite seu nome: ");
         nome = input.nextLine();
@@ -44,7 +46,7 @@ public class devoured {
         }
 
         return personagemEdificuldade;
-    }
+    } 
 
     public static void resumoEscolhaImprimir() {
         switch (personagemEdificuldade) {
@@ -88,6 +90,7 @@ public class devoured {
                     break;
 
                 default:
+                    System.out.println("Opção inválida inserida");
                     break;
             }
         } while (opcao != 4);
@@ -98,6 +101,56 @@ public class devoured {
         System.out.println(">>> " + texto);
         System.out.println();
     }
+
+    public static int desafio01Facil(Scanner input) {
+        
+        
+        System.out.println("DESAFIO 1:Porta Condiciona");
+        System.out.println(
+            "Você encontra um terminal com o aviso: \n “Digite o comando que libera a porta se a variável senha for igual a \"DEV\".”");
+            System.out.println("Complete a linha de código abaixo corretamente:");
+            System.out.println("if (__________) {\n" + //
+            "    System.out.println(\"Acesso liberado!\");\n" + //
+            "}\n" + //
+            "");
+            
+        input.nextLine();
+        String resposta = input.nextLine().trim();
+        
+        if(resposta.equals("senha.equals(\"DEV\")")){
+            System.out.println("Parábens você acertou e abriu a porta!");
+            pontos++;
+            System.out.println("Agora você tem pontos: " + pontos);
+        }else{
+            System.out.println("Resposta errada a porta permanece trancada.");
+            System.out.println("1 - Tentar novamente (Você tem x tentativas)");
+            System.out.println("2 - Pedir uma dica (Você tem X dicas)");
+        }
+
+        return pontos;
+    }
+
+    public static String[] arvoreDeHabilidadesPopular(){
+        int habilidade = 0;
+        System.out.println("Bem-vindo a loja de habilidades");
+        System.out.println("Luz de decisão - 1 ponto (descrição da habilidade) - Digite 1 para escolher essa habilidade");
+        System.out.println("Qual habilidade você deseja? ");
+        habilidade = input.nextInt();
+        if(pontos == 1 && habilidade == 1){
+            System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
+            habilidades[0] = "Luz de decisão";
+        }
+
+        return habilidades;
+    }
+
+
+    //criar função futura que vai atribuir status aos personagens
+    public static void batalhaTesteBoss(){
+        
+    }
+
+
 
     public static void jogar() {
         registroPlayer();
@@ -110,8 +163,8 @@ public class devoured {
             exibirNarrativa(
                     "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficaram presos para sempre nesse loop!”");
 
-            
-
+            desafio01Facil(input);
+            arvoreDeHabilidadesPopular();
         }
     }
 }
