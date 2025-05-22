@@ -18,7 +18,6 @@ public class devoured {
     public static String registroPlayer() {
         System.out.println("Bem-vindo(a) ao Devoured, digite seu nome: ");
         nome = input.nextLine();
-        input.nextLine();
         return nome;
     }
 
@@ -108,6 +107,7 @@ public class devoured {
         System.out.println("DESAFIO 1:Porta Condiciona");
         System.out.println(
             "Você encontra um terminal com o aviso: \n “Digite o comando que libera a porta se a variável senha for igual a \"DEV\".”");
+            System.out.println("Dica: use equals para comparar Strings!");
             System.out.println("Complete a linha de código abaixo corretamente:");
             System.out.println("if (__________) {\n" + //
             "    System.out.println(\"Acesso liberado!\");\n" + //
@@ -139,6 +139,7 @@ public class devoured {
         if(pontos == 1 && habilidade == 1){
             System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
             habilidades[0] = "Luz de decisão";
+            habilidades[1] = "teste diminuir vida do boss";
         }
 
         return habilidades;
@@ -147,7 +148,68 @@ public class devoured {
 
     //criar função futura que vai atribuir status aos personagens
     public static void batalhaTesteBoss(){
-        
+        int vidaJogador = 3;
+        int vidaBoss = 40;
+        int vidaReduzida = 0;
+         
+        boolean venceu = false;
+        boolean usouHabilidade1 = false;
+        boolean usouHabilidade2 = false;
+
+        exibirNarrativa("Bem vindo a batalha com o boss BLABLABLA"); //adicionar dialogos reais aqui
+
+        while (vidaJogador > 0 && !venceu) {
+            if(habilidades[1].equals("teste diminuir vida do boss") && !usouHabilidade2 && habilidades[1] != null){
+                vidaReduzida = vidaBoss - (vidaBoss * 5/100);
+                System.out.printf("Graças a sua habilidade tatta a vida do boss foi diminuida de %d para %d \n", vidaBoss, vidaReduzida );
+                usouHabilidade2 = true;
+            }
+
+
+            System.out.println("Qual estrutura de controle permite repetir o código até algo"); // adicionar problema real
+            System.out.println("A");
+            System.out.println("B");
+            System.out.println("C");
+
+            if(habilidades[0] != null && habilidades[0].equals("Luz de decisão")){
+                System.out.println("Você deseja utilizar a sua habilidade Luz de decisão? Digite 1 para sim e 0 para não");
+                input.nextLine();
+                int respostaUsoHab = input.nextInt();
+
+                if(respostaUsoHab == 1){
+                    System.out.println("DICA TAL TAL TAL");
+                }
+
+            }
+
+            System.out.println("Digite a resposta correta: ");
+            input.nextLine();
+            String resposta = input.nextLine().trim().toUpperCase();
+
+            if(resposta.equals("C")){
+                System.out.println("Parabens resposta correta");
+                if(usouHabilidade2){
+                    vidaReduzida = vidaReduzida - 15;
+                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador, vidaReduzida);
+                }else{
+                    vidaBoss = vidaBoss - 15;
+                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador, vidaBoss);
+                }
+            }else{
+                vidaJogador--;
+                System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d de vida \n", vidaJogador);
+            }
+
+            if(vidaBoss <= 0 || vidaReduzida <= 0 ){
+                venceu = true;
+                System.out.println("Você derrotou o BOSS");
+            }
+
+        }
+
+        if(!venceu){
+            System.out.println("Você foi derrotado");
+        }
     }
 
 
@@ -165,6 +227,9 @@ public class devoured {
 
             desafio01Facil(input);
             arvoreDeHabilidadesPopular();
+            batalhaTesteBoss();
+        } else if(personagemEdificuldade == 2){
+            
         }
     }
 }
