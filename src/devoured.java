@@ -13,10 +13,13 @@ public class devoured {
 
     static int pontos = 0;
 
-    static String [] habilidades = new String[3]; 
+    static String[] habilidades = new String[3];
+    static boolean[] habilidadesUsadas = new boolean[3];
+    static int vida = 100;
 
     public static String registroPlayer() {
         System.out.println("Bem-vindo(a) ao Devoured, digite seu nome: ");
+        input.nextLine();
         nome = input.nextLine();
         return nome;
     }
@@ -45,7 +48,7 @@ public class devoured {
         }
 
         return personagemEdificuldade;
-    } 
+    }
 
     public static void resumoEscolhaImprimir() {
         switch (personagemEdificuldade) {
@@ -102,26 +105,25 @@ public class devoured {
     }
 
     public static int desafio01Facil(Scanner input) {
-        
-        
+
         System.out.println("DESAFIO 1:Porta Condiciona");
         System.out.println(
-            "Você encontra um terminal com o aviso: \n “Digite o comando que libera a porta se a variável senha for igual a \"DEV\".”");
-            System.out.println("Dica: use equals para comparar Strings!");
-            System.out.println("Complete a linha de código abaixo corretamente:");
-            System.out.println("if (__________) {\n" + //
-            "    System.out.println(\"Acesso liberado!\");\n" + //
-            "}\n" + //
-            "");
-            
+                "Você encontra um terminal com o aviso: \n “Digite o comando que libera a porta se a variável senha for igual a \"DEV\".”");
+        System.out.println("Dica: use equals para comparar Strings!");
+        System.out.println("Complete a linha de código abaixo corretamente:");
+        System.out.println("if (__________) {\n" + //
+                "    System.out.println(\"Acesso liberado!\");\n" + //
+                "}\n" + //
+                "");
+
         input.nextLine();
         String resposta = input.nextLine().trim();
-        
-        if(resposta.equals("senha.equals(\"DEV\")")){
+
+        if (resposta.equals("senha.equals(\"DEV\")")) {
             System.out.println("Parábens você acertou e abriu a porta!");
             pontos++;
             System.out.println("Agora você tem pontos: " + pontos);
-        }else{
+        } else {
             System.out.println("Resposta errada a porta permanece trancada.");
             System.out.println("1 - Tentar novamente (Você tem x tentativas)");
             System.out.println("2 - Pedir uma dica (Você tem X dicas)");
@@ -129,14 +131,62 @@ public class devoured {
 
         return pontos;
     }
+    //adicionar respostas em um array
 
-    public static String[] arvoreDeHabilidadesPopular(){
+    public static int desafiosDoJogo(String titulo, String enunciado, String [] dicasIniciais, String respostaCorreta){
+        System.out.println("DESAFIO " + titulo);
+        System.out.println(enunciado);
+
+        input.nextLine();
+        String resposta = input.nextLine().trim();
+
+        List<String> dicas = new ArrayList<>(Arrays.asList(dicasIniciais));
+        Random random = new Random();
+
+        
+
+        while (!resposta.equals(respostaCorreta)) {
+            System.out.println("Resposta errada");
+            System.out.println("1 - tentar novamente");
+            System.out.println("2 - utilizar uma dica");
+            System.out.println("3 - Sair do jogo");
+            int escolha = input.nextInt();
+            if (escolha == 1) {
+                System.out.println("Digite novamente sua resposta");
+                input.nextLine();
+                resposta = input.nextLine().trim();
+            }else if(escolha == 2){
+                if (!dicas.isEmpty()) {
+                    // Escolhe dica aleatória e remove da lista
+                    int indice = random.nextInt(dicas.size());
+                    
+                    String dicaSorteada = dicas.remove(indice);
+                    System.out.println("DICA: " + dicaSorteada);
+                }else{
+                    System.out.println("Voce ja usou todas suas dicas");
+                }
+            }else if(escolha == 3){
+                System.exit(0);
+                break;
+            }
+        }   
+
+        System.out.println("Acertou eba");
+        pontos++;
+        System.out.println("Pontos: " + pontos);
+        return pontos;        
+
+    }
+
+
+    public static String[] arvoreDeHabilidadesPopular() {
         int habilidade = 0;
         System.out.println("Bem-vindo a loja de habilidades");
-        System.out.println("Luz de decisão - 1 ponto (descrição da habilidade) - Digite 1 para escolher essa habilidade");
+        System.out
+                .println("Luz de decisão - 1 ponto (descrição da habilidade) - Digite 1 para escolher essa habilidade");
         System.out.println("Qual habilidade você deseja? ");
         habilidade = input.nextInt();
-        if(pontos == 1 && habilidade == 1){
+        if (pontos == 1 && habilidade == 1) {
             System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
             habilidades[0] = "Luz de decisão";
             habilidades[1] = "teste diminuir vida do boss";
@@ -145,79 +195,91 @@ public class devoured {
         return habilidades;
     }
 
+    // criar função futura que vai atribuir status aos personagens
 
-    //criar função futura que vai atribuir status aos personagens
-    public static void batalhaTesteBoss(){
-        int vidaJogador = 3;
-        int vidaBoss = 40;
-        int vidaReduzida = 0;
-         
-        boolean venceu = false;
-        boolean usouHabilidade1 = false;
-        boolean usouHabilidade2 = false;
+    public static void usarHabilidades(int[] vidaBoss) {
+        for (int i = 0; i < habilidades.length; i++) {
+            if (habilidades[i] != null && !habilidadesUsadas[i]) {
+                System.out.printf("Deseja utilizar %s ? Digite 1 para sim e 0 para não", habilidades[i]);
+                int escolha = input.nextInt();
 
-        exibirNarrativa("Bem vindo a batalha com o boss BLABLABLA"); //adicionar dialogos reais aqui
+                if (escolha == 1) {
+                    switch (habilidades[i]) {
+                        case "teste diminuir vida do boss":
+                            int reducao = vidaBoss[0] * 5 / 100;
+                            vidaBoss[0] -= reducao;
+                            System.out.printf(
+                                    "Graças a sua habilidade tatta a vida do boss foi reduzida em %d para %d \n",
+                                    reducao, vidaBoss[0]);
+                            break;
+                        case "Luz de decisão":
+                            System.out.println("DICA TAL TAL TAL"); // implementar array com dicas aleatorias referentes a cada tipo de boss
+                            break;
+                        default:
+                            break;
+                    }
 
-        while (vidaJogador > 0 && !venceu) {
-            if(habilidades[1].equals("teste diminuir vida do boss") && !usouHabilidade2 && habilidades[1] != null){
-                vidaReduzida = vidaBoss - (vidaBoss * 5/100);
-                System.out.printf("Graças a sua habilidade tatta a vida do boss foi diminuida de %d para %d \n", vidaBoss, vidaReduzida );
-                usouHabilidade2 = true;
+                    habilidadesUsadas[i] = true;
+                }
             }
+        }
+    }
 
+    public static void batalhaTesteBoss() {
+        int [] vidaJogador = {3};
+        int [] vidaBoss = {40};
+     
 
-            System.out.println("Qual estrutura de controle permite repetir o código até algo"); // adicionar problema real
+        boolean venceu = false;
+ 
+
+        exibirNarrativa("Bem vindo a batalha com o boss BLABLABLA"); // adicionar dialogos reais aqui
+
+        
+        while (vidaJogador[0] > 0 && !venceu) {
+            usarHabilidades(vidaBoss);
+
+            System.out.println("Qual estrutura de controle permite repetir o código até algo"); // adicionar problema
+                                                                                                // real
             System.out.println("A");
             System.out.println("B");
             System.out.println("C");
-
-            if(habilidades[0] != null && habilidades[0].equals("Luz de decisão")){
-                System.out.println("Você deseja utilizar a sua habilidade Luz de decisão? Digite 1 para sim e 0 para não");
-                input.nextLine();
-                int respostaUsoHab = input.nextInt();
-
-                if(respostaUsoHab == 1){
-                    System.out.println("DICA TAL TAL TAL");
-                }
-
-            }
 
             System.out.println("Digite a resposta correta: ");
             input.nextLine();
             String resposta = input.nextLine().trim().toUpperCase();
 
-            if(resposta.equals("C")){
+            if (resposta.equals("C")) {
                 System.out.println("Parabens resposta correta");
-                if(usouHabilidade2){
-                    vidaReduzida = vidaReduzida - 15;
-                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador, vidaReduzida);
-                }else{
-                    vidaBoss = vidaBoss - 15;
-                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador, vidaBoss);
-                }
-            }else{
-                vidaJogador--;
-                System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d de vida \n", vidaJogador);
+               
+                    vidaBoss[0] -= 15;
+                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador[0], vidaBoss[0]);
+               
+              
+            } else {
+                vidaJogador[0]--;
+                System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d de vida \n", vidaJogador[0]);
             }
 
-            if(vidaBoss <= 0 || vidaReduzida <= 0 ){
+            if (vidaBoss[0] <= 0 ) {
                 venceu = true;
                 System.out.println("Você derrotou o BOSS");
             }
 
         }
 
-        if(!venceu){
+        if (!venceu) {
             System.out.println("Você foi derrotado");
         }
     }
-
-
 
     public static void jogar() {
         registroPlayer();
         escolhaPersonagem();
         resumoEscolhaImprimir();
+        
+
+        System.out.println("\n=================================================\n");
 
         if (personagemEdificuldade == 1) {
             exibirNarrativa(
@@ -225,11 +287,13 @@ public class devoured {
             exibirNarrativa(
                     "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficaram presos para sempre nesse loop!”");
 
-            desafio01Facil(input);
+            // desafio01Facil(input);
+            String [] dicas = {"aa", "opooo", "odsp"};
+            desafiosDoJogo("rato1", "lolo", dicas, "r");
             arvoreDeHabilidadesPopular();
             batalhaTesteBoss();
-        } else if(personagemEdificuldade == 2){
-            
+        } else if (personagemEdificuldade == 2) {
+
         }
     }
 }
