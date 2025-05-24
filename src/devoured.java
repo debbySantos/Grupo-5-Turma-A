@@ -8,8 +8,34 @@ public class devoured {
 
     // NECESSÁRIO CRIAÇÃO DE STATUS PARA OS PERSONAGENS.
 
+    public class Kirk {
+
+        String nome = "Kirk";
+        static float defesa = 0; // defesa 1 = baixa
+        static int vida = 120;
+    }
+
+    public class Judy {
+
+        String nome = "Judy";
+        static float defesa = 0.25f; // defesa 2 = média
+        static int vida = 100;
+    }
+
+    public class Avix {
+
+        String nome = "Avix";
+        static float defesa = 0.50f; // defesa 3 = alta
+        static int vida = 80;
+    }
+
+    public class Boss01 {
+        static int vida = 100;
+    }
+
     static String nome = "";
     static Scanner input = new Scanner(System.in);
+    static Random random = new Random();
 
     static int pontos = 0;
 
@@ -104,46 +130,44 @@ public class devoured {
         System.out.println();
     }
 
-    public static int desafio01Facil(Scanner input) {
+    // public static int desafio01Facil(Scanner input) {
 
-        System.out.println("DESAFIO 1:Porta Condiciona");
-        System.out.println(
-                "Você encontra um terminal com o aviso: \n “Digite o comando que libera a porta se a variável senha for igual a \"DEV\".”");
-        System.out.println("Dica: use equals para comparar Strings!");
-        System.out.println("Complete a linha de código abaixo corretamente:");
-        System.out.println("if (__________) {\n" + //
-                "    System.out.println(\"Acesso liberado!\");\n" + //
-                "}\n" + //
-                "");
+    // System.out.println("DESAFIO 1:Porta Condiciona");
+    // System.out.println(
+    // "Você encontra um terminal com o aviso: \n “Digite o comando que libera a
+    // porta se a variável senha for igual a \"DEV\".”");
+    // System.out.println("Dica: use equals para comparar Strings!");
+    // System.out.println("Complete a linha de código abaixo corretamente:");
+    // System.out.println("if (__________) {\n" + //
+    // " System.out.println(\"Acesso liberado!\");\n" + //
+    // "}\n" + //
+    // "");
 
-        input.nextLine();
-        String resposta = input.nextLine().trim();
+    // input.nextLine();
+    // String resposta = input.nextLine().trim();
 
-        if (resposta.equals("senha.equals(\"DEV\")")) {
-            System.out.println("Parábens você acertou e abriu a porta!");
-            pontos++;
-            System.out.println("Agora você tem pontos: " + pontos);
-        } else {
-            System.out.println("Resposta errada a porta permanece trancada.");
-            System.out.println("1 - Tentar novamente (Você tem x tentativas)");
-            System.out.println("2 - Pedir uma dica (Você tem X dicas)");
-        }
+    // if (resposta.equals("senha.equals(\"DEV\")")) {
+    // System.out.println("Parábens você acertou e abriu a porta!");
+    // pontos++;
+    // System.out.println("Agora você tem pontos: " + pontos);
+    // } else {
+    // System.out.println("Resposta errada a porta permanece trancada.");
+    // System.out.println("1 - Tentar novamente (Você tem x tentativas)");
+    // System.out.println("2 - Pedir uma dica (Você tem X dicas)");
+    // }
 
-        return pontos;
-    }
-    //adicionar respostas em um array
+    // return pontos;
+    // }
+    // adicionar respostas em um array
 
-    public static int desafiosDoJogo(String titulo, String enunciado, String [] dicasIniciais, String respostaCorreta){
+    public static int desafiosDoJogo(String titulo, String enunciado, String[] dicasDaFase, String respostaCorreta) {
         System.out.println("DESAFIO " + titulo);
         System.out.println(enunciado);
 
         input.nextLine();
         String resposta = input.nextLine().trim();
 
-        List<String> dicas = new ArrayList<>(Arrays.asList(dicasIniciais));
-        Random random = new Random();
-
-        
+        List<String> dicas = new ArrayList<>(Arrays.asList(dicasDaFase));
 
         while (!resposta.equals(respostaCorreta)) {
             System.out.println("Resposta errada");
@@ -155,29 +179,28 @@ public class devoured {
                 System.out.println("Digite novamente sua resposta");
                 input.nextLine();
                 resposta = input.nextLine().trim();
-            }else if(escolha == 2){
+            } else if (escolha == 2) {
                 if (!dicas.isEmpty()) {
                     // Escolhe dica aleatória e remove da lista
                     int indice = random.nextInt(dicas.size());
-                    
+
                     String dicaSorteada = dicas.remove(indice);
                     System.out.println("DICA: " + dicaSorteada);
-                }else{
+                } else {
                     System.out.println("Voce ja usou todas suas dicas");
                 }
-            }else if(escolha == 3){
+            } else if (escolha == 3) {
                 System.exit(0);
                 break;
             }
-        }   
+        }
 
         System.out.println("Acertou eba");
         pontos++;
         System.out.println("Pontos: " + pontos);
-        return pontos;        
+        return pontos;
 
     }
-
 
     public static String[] arvoreDeHabilidadesPopular() {
         int habilidade = 0;
@@ -213,7 +236,8 @@ public class devoured {
                                     reducao, vidaBoss[0]);
                             break;
                         case "Luz de decisão":
-                            System.out.println("DICA TAL TAL TAL"); // implementar array com dicas aleatorias referentes a cada tipo de boss
+                            System.out.println("DICA TAL TAL TAL"); // implementar array com dicas aleatorias referentes
+                                                                    // ao tipo de boss que essa habilidade pertence
                             break;
                         default:
                             break;
@@ -225,59 +249,161 @@ public class devoured {
         }
     }
 
-    public static void batalhaTesteBoss() {
-        int [] vidaJogador = {3};
-        int [] vidaBoss = {40};
-     
+    public static void BossKirk(int vidaBoss, int vidaPersonagem, float defesaPersonagem) {
 
-        boolean venceu = false;
- 
+        exibirNarrativa("Ola Kirk bem vindo a primeira batalha");
 
-        exibirNarrativa("Bem vindo a batalha com o boss BLABLABLA"); // adicionar dialogos reais aqui
-
-        
-        while (vidaJogador[0] > 0 && !venceu) {
-            usarHabilidades(vidaBoss);
-
-            System.out.println("Qual estrutura de controle permite repetir o código até algo"); // adicionar problema
-                                                                                                // real
-            System.out.println("A");
-            System.out.println("B");
-            System.out.println("C");
-
-            System.out.println("Digite a resposta correta: ");
-            input.nextLine();
-            String resposta = input.nextLine().trim().toUpperCase();
-
-            if (resposta.equals("C")) {
-                System.out.println("Parabens resposta correta");
-               
-                    vidaBoss[0] -= 15;
-                    System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaJogador[0], vidaBoss[0]);
-               
-              
+        while (vidaBoss > 0 && vidaPersonagem > 0) {
+            int escolha = random.nextInt(6) + 1;
+            if (escolha == 1) {
+                int[] resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, "TESTE ENUNCIADO 1",
+                        new String[] { "teste 1 op", "teste2", "teste4", "teste5" }, "r");
+                vidaBoss = resultado[0];
+                vidaPersonagem = resultado[1];
+            } else if (escolha == 2) {
+                int[] resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, "TESTE ENUNCIADO 2",
+                        new String[] { "teste 1 op", "teste2", "teste4", "teste5" }, "r");
+                        vidaBoss = resultado[0];
+                        vidaPersonagem = resultado[1];
+                
+            } else if (escolha == 3) {
+                int[] resultado =  perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste 3", "teste 3", "r");
+                vidaBoss = resultado[0];
+                vidaPersonagem = resultado[1];
+            } else if (escolha == 4) {
+                int[] resultado =  perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste 3", "teste 3", "r");
+                vidaBoss = resultado[0];
+                vidaPersonagem = resultado[1];
+            } else if (escolha == 5) {
+                int[] resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste4", "r");
+                vidaBoss = resultado[0];
+                vidaPersonagem = resultado[1];
             } else {
-                vidaJogador[0]--;
-                System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d de vida \n", vidaJogador[0]);
+                int[] resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste4", "r");
+                vidaBoss = resultado[0];
+                vidaPersonagem = resultado[1];
             }
-
-            if (vidaBoss[0] <= 0 ) {
-                venceu = true;
-                System.out.println("Você derrotou o BOSS");
+            if (Boss01.vida < 0) {
+                System.out.println("Voce venceu");
             }
-
+        }
+        if (Kirk.vida < 0) {
+            System.out.println("voce perdeu");
         }
 
-        if (!venceu) {
-            System.out.println("Você foi derrotado");
-        }
     }
+
+    public static int[] perguntasAlternativas(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
+            String[] opcoes, String respostaCorreta) {
+        System.out.println(enunciado);
+        System.out.println(opcoes[0]);
+        System.out.println(opcoes[1]);
+        System.out.println(opcoes[2]);
+        System.out.println(opcoes[3]);
+        input.nextLine();
+        String resposta = input.nextLine();
+
+        if (resposta.equals(respostaCorreta)) {
+            vidaBoss -= 15; // mudar status do boss
+            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
+                                                                                                        // texto
+        } else {
+            vidaPersonagem -= 10;
+            System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
+        }
+
+        return new int[] { vidaBoss, vidaPersonagem };
+
+    }
+
+    public static int[] perguntasCompletarCodigo(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
+            String problema, String respostaCorreta) {
+
+        System.out.println(enunciado);
+        System.out.println(problema);
+        input.nextLine();
+        String resposta = input.nextLine();
+        if (resposta.equals(respostaCorreta)) {
+            vidaBoss -= 15; // mudar status do boss
+            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
+                                                                                                        // texto
+        } else {
+            vidaPersonagem -= 10;
+            System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
+        }
+
+        return new int[] { vidaBoss, vidaPersonagem };
+    }
+
+    public static int[] perguntasEscreverCodigo(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
+            String respostaCorreta) {
+
+        System.out.println(enunciado);
+        input.nextLine();
+        String resposta = input.nextLine();
+        if (resposta.equals(respostaCorreta)) {
+            vidaBoss -= 15; // mudar status do boss
+            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
+                                                                                                        // texto
+        } else {
+            vidaPersonagem -= 10;
+            System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
+        }
+
+        return new int[] { vidaBoss, vidaPersonagem };
+    }
+
+    // public static void batalhaTesteBoss(int vidaPersonagem, int defesaPersonagem,
+    // String nomePersonagem) {
+
+    // boolean venceu = false;
+
+    // exibirNarrativa("Bem vindo a batalha com o boss BLABLABLA"); // adicionar
+    // dialogos reais aqui
+
+    // while (vidaJogador[0] > 0 && !venceu) {
+    // usarHabilidades(vidaBoss);
+
+    // System.out.println("Qual estrutura de controle permite repetir o código até
+    // algo"); // adicionar problema
+    // // real
+    // System.out.println("A");
+    // System.out.println("B");
+    // System.out.println("C");
+
+    // System.out.println("Digite a resposta correta: ");
+    // input.nextLine();
+    // String resposta = input.nextLine().trim().toUpperCase();
+
+    // if (resposta.equals("C")) {
+    // System.out.println("Parabens resposta correta");
+
+    // vidaBoss[0] -= 15;
+    // System.out.printf("STATUS: vida personagem: %d vida boss %d \n",
+    // vidaJogador[0], vidaBoss[0]);
+
+    // } else {
+    // vidaJogador[0]--;
+    // System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d de vida
+    // \n", vidaJogador[0]);
+    // }
+
+    // if (vidaBoss[0] <= 0) {
+    // venceu = true;
+    // System.out.println("Você derrotou o BOSS");
+    // }
+
+    // }
+
+    // if (!venceu) {
+    // System.out.println("Você foi derrotado");
+    // }
+    // }
 
     public static void jogar() {
         registroPlayer();
         escolhaPersonagem();
         resumoEscolhaImprimir();
-        
 
         System.out.println("\n=================================================\n");
 
@@ -288,10 +414,10 @@ public class devoured {
                     "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficaram presos para sempre nesse loop!”");
 
             // desafio01Facil(input);
-            String [] dicas = {"aa", "opooo", "odsp"};
+            String[] dicas = { "aa", "opooo", "odsp" };
             desafiosDoJogo("rato1", "lolo", dicas, "r");
             arvoreDeHabilidadesPopular();
-            batalhaTesteBoss();
+            BossKirk(Boss01.vida, Kirk.vida, Kirk.defesa);
         } else if (personagemEdificuldade == 2) {
 
         }
