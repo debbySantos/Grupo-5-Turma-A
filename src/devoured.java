@@ -8,29 +8,29 @@ public class devoured {
 
     // NECESSÁRIO CRIAÇÃO DE STATUS PARA OS PERSONAGENS.
 
-    public class Kirk {
+    public static class Kirk {
 
         String nome = "Kirk";
-        static float defesa = 0; // defesa 1 = baixa
-        static int vida = 120;
+        float defesa = 0; // defesa 1 = baixa
+        int vida = 120;
     }
 
-    public class Judy {
+    public static class Judy {
 
         String nome = "Judy";
-        static float defesa = 0.25f; // defesa 2 = média
-        static int vida = 100;
+        float defesa = 0.25f; // defesa 2 = média
+        int vida = 100;
     }
 
-    public class Avix {
+    public static class Avix {
 
         String nome = "Avix";
-        static float defesa = 0.50f; // defesa 3 = alta
-        static int vida = 80;
+        float defesa = 0.50f; // defesa 3 = alta
+        int vida = 80;
     }
 
-    public class Boss01 {
-        static int vida = 100;
+    public static class Boss {
+        int vida = 100;
     }
 
     static String nome = "";
@@ -253,41 +253,43 @@ public class devoured {
 
         exibirNarrativa("Ola Kirk bem vindo a primeira batalha");
 
+        String[][] perguntas = { { "Pergunta teste 1", "opcao 1", "opcao 2", "opcao 3", "opcao 4", "C", "alternativa" },
+                { "Pergunta teste 2", "escreva", "", "", "", "1", "escrever" },
+                { "Complete: int[] numeros = new ____[5];", "", "", "", "", "int", "completar" } };
+
         while (vidaBoss > 0 && vidaPersonagem > 0) {
-            int escolha = random.nextInt(6) + 1;
-            if (escolha == 1) {
-                int[] resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, "TESTE ENUNCIADO 1",
-                        new String[] { "teste 1 op", "teste2", "teste4", "teste5" }, "r");
-                vidaBoss = resultado[0];
-                vidaPersonagem = resultado[1];
-            } else if (escolha == 2) {
-                int[] resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, "TESTE ENUNCIADO 2",
-                        new String[] { "teste 1 op", "teste2", "teste4", "teste5" }, "r");
-                        vidaBoss = resultado[0];
-                        vidaPersonagem = resultado[1];
-                
-            } else if (escolha == 3) {
-                int[] resultado =  perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste 3", "teste 3", "r");
-                vidaBoss = resultado[0];
-                vidaPersonagem = resultado[1];
-            } else if (escolha == 4) {
-                int[] resultado =  perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste 3", "teste 3", "r");
-                vidaBoss = resultado[0];
-                vidaPersonagem = resultado[1];
-            } else if (escolha == 5) {
-                int[] resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste4", "r");
-                vidaBoss = resultado[0];
-                vidaPersonagem = resultado[1];
-            } else {
-                int[] resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, "teste4", "r");
-                vidaBoss = resultado[0];
-                vidaPersonagem = resultado[1];
+            int sorteio = random.nextInt(perguntas.length);
+            String[] pergunta = perguntas[sorteio];
+            String tipo = pergunta[6];
+
+            int[] resultado = { 0, 0 };
+
+            if (tipo.equals("alternativa")) {
+                resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
+                        new String[] { pergunta[1], pergunta[2], pergunta[3], pergunta[4] }, pergunta[5]);
+
+            } else if (tipo.equals("completar")) {
+                resultado = perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
+                        pergunta[1],
+                        pergunta[5]);
+
+            } else if (tipo.equals("escrever")) {
+                resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
+                        pergunta[5]);
+
             }
-            if (Boss01.vida < 0) {
+
+            vidaBoss = resultado[0];
+            vidaPersonagem = resultado[1];
+   
+            
+
+
+            if (vidaBoss <= 0) {
                 System.out.println("Voce venceu");
             }
         }
-        if (Kirk.vida < 0) {
+        if (vidaPersonagem <= 0) {
             System.out.println("voce perdeu");
         }
 
@@ -296,15 +298,16 @@ public class devoured {
     public static int[] perguntasAlternativas(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
             String[] opcoes, String respostaCorreta) {
         System.out.println(enunciado);
-        System.out.println(opcoes[0]);
-        System.out.println(opcoes[1]);
-        System.out.println(opcoes[2]);
-        System.out.println(opcoes[3]);
+        for (String opcao : opcoes) {
+            System.out.println(opcao);
+        }
         input.nextLine();
         String resposta = input.nextLine();
 
         if (resposta.equals(respostaCorreta)) {
+          
             vidaBoss -= 15; // mudar status do boss
+
             System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
                                                                                                         // texto
         } else {
@@ -417,7 +420,7 @@ public class devoured {
             String[] dicas = { "aa", "opooo", "odsp" };
             desafiosDoJogo("rato1", "lolo", dicas, "r");
             arvoreDeHabilidadesPopular();
-            BossKirk(Boss01.vida, Kirk.vida, Kirk.defesa);
+            BossKirk(Boss.vida, Kirk.vida, Kirk.defesa);
         } else if (personagemEdificuldade == 2) {
 
         }
