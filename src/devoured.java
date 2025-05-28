@@ -257,8 +257,8 @@ public class devoured {
                 String[][] perguntas = { { "Pergunta teste 1", "opcao 1", "opcao 2", "opcao 3", "opcao 4", "C", "alternativa" },
                         { "Pergunta teste 2", "escreva", "", "", "", "1", "escrever" },
                         { "Complete: int[] numeros = new ____[5];", "", "", "", "", "int", "completar" } };
-        
-                while (vidaBoss > 0 && vidaPersonagem > 0) {
+                int tentativas = 0;
+                while (vidaBoss > 0 && vidaPersonagem > 0 && tentativas < 6) {
                     int sorteio = random.nextInt(perguntas.length);
                     String[] pergunta = perguntas[sorteio];
                     String tipo = pergunta[6];
@@ -286,6 +286,8 @@ public class devoured {
                     if (vidaBoss <= 0) {
                         System.out.println("Voce venceu");
                     }
+
+                    tentativas++;
                 }
                 if (vidaPersonagem <= 0) {
                     System.out.println("voce perdeu");
