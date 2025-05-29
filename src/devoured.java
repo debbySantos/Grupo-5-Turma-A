@@ -193,7 +193,7 @@ public class devoured {
         System.out.println("Luz de decisão - 1 ponto (descrição da habilidade) - Digite 1 para escolher essa habilidade");
         System.out.println("Qual habilidade você deseja? ");
         habilidade = input.nextInt();
-        if (pontos == 1 && habilidade == 1) {
+        if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
             System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
             habilidades[0] = "Luz de decisão";
             habilidades[1] = "teste diminuir vida do boss"; // REMOVER ESSA LINHA, É APENAS UM TESTE
