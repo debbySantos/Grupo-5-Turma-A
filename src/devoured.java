@@ -42,7 +42,12 @@ public class devoured {
 
     static String[] habilidades = new String[3];
     static boolean[] habilidadesUsadas = new boolean[3];
+    static String[] habilidadesDisponiveis = {"Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
+            "Escudo de Erro Leve - Reduz o impacto de erros leves",
+            "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso"};
     static int vida = 100;
+
+
 
     // REGISTRO INICIAL DO JOGADOR
 
@@ -186,22 +191,48 @@ public class devoured {
     public static String[] arvoreDeHabilidadesPopular() {
         int habilidade = 0;
         System.out.println("Bem-vindo a loja de habilidades");
-        System.out.println(
-                "Luz de decisão - 1 ponto (Realça caminhos certos em decisões simples) - Digite 1 para escolher essa habilidade");
-        System.out.println(
-                "Escudo de Erro Leve: - 1 ponto (Ignora o primeiro erro lógico sem perder vida) - Digite 2 para escolher essa habilidade");
-        System.out.println("Qual habilidade você deseja? ");
-        habilidade = input.nextInt();
-        if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
-            System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
-            habilidades[0] = "Luz de decisão";
-            pontos--;
-        } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
-            System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Escudo de Erro Leve");
-            habilidades[0] = "Escudo de Erro Leve";
-            pontos--;
 
+        if(habilidadesDisponiveis.length == 0) {
+            System.out.println("Nenhuma habilidade disponível no momento.");
+            return habilidades;
         }
+
+        do {
+            System.out.println("Habilidades disponíveis:");
+            for (int i = 0; i < habilidadesDisponiveis.length; i++) {
+                System.out.println((i + 1) + " - " + habilidadesDisponiveis[i]);
+            }
+            System.out.println("Qual habilidade você deseja adquirir? ");
+
+            habilidade = input.nextInt();
+            if (habilidade < 1 || habilidade > habilidadesDisponiveis.length) {
+                System.out.println("Habilidade inválida. Tente novamente.");
+                continue;
+            }
+
+            String habilidadeEscolhida = habilidadesDisponiveis[habilidade - 1];
+            if (pontos >= 1 && habilidades[habilidade - 1] == null) {
+                System.out.println("Parabéns, você acaba de adquirir a habilidade: " + habilidadeEscolhida);
+                habilidades[habilidade - 1] = habilidadeEscolhida.split(" - ")[0];
+                pontos--;
+                habilidadesDisponiveis = Arrays.copyOfRange(habilidadesDisponiveis, 0, habilidade - 1);
+
+                return habilidades;
+            } else {
+                System.out.println("Você não tem pontos suficientes ou já adquiriu essa habilidade.");
+            }
+        } while (habilidadesDisponiveis.length > 0);
+
+        // habilidade = input.nextInt();
+        // if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
+        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
+        //     habilidades[0] = "Luz de decisão";
+        //     pontos--;
+        // } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
+        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Escudo de Erro Leve");
+        //     habilidades[0] = "Escudo de Erro Leve";
+        //     pontos--;
+        // }
         // System.out.println("Bem-vindo a loja de habilidades");
         // System.out.println(
         //         "Detector de Verdade: - 1 ponto (Indica se uma condição é verdadeira ou falsa.) - Digite 1 para escolher essa habilidade");
@@ -453,7 +484,7 @@ public class devoured {
 
             desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
              "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas2, " idade >= 18 && chaveValida");
+            dicas2, "idade >= 18 && chaveValida");
             
             arvoreDeHabilidadesPopular();
 
@@ -464,7 +495,7 @@ public class devoured {
 
             desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
              "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas3, " idade >= 18 && chaveValida");
+            dicas3, "idade >= 18 && chaveValida");
             
             arvoreDeHabilidadesPopular();
 
