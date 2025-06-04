@@ -402,6 +402,34 @@ public class devoured {
                     }
                 }
             }
+        } else if (personagemEdificuldade == 3) { // Avix
+            exibirNarrativa("Ola Avix, este é seu desafio final!");
+            String respostaCorreta = "for(int i = 0; i < 10; i++)";
+            String[] dicas = {
+                    "Use a estrutura for padrão do Java.",
+                    "O contador começa em 0 e vai até menor que 10.",
+                    "Não esqueça do incremento i++."
+            };
+
+            while (tentativas < 6) {
+                System.out.println("DESAFIO AVIX: Complete a estrutura de repetição para imprimir de 0 a 9:");
+                System.out.println("__________ { System.out.println(i); }");
+                System.out.println("Digite sua resposta:");
+                input.nextLine();
+                String resposta = input.nextLine().trim();
+
+                if (resposta.equals(respostaCorreta)) {
+                    System.out.println("Parabéns, você venceu o boss!");
+                    venceu = true;
+                    break;
+                } else {
+                    tentativas++;
+                    System.out.println("Resposta incorreta! Tentativas restantes: " + (6 - tentativas));
+                    if (tentativas <= dicas.length) {
+                        System.out.println("DICA: " + dicas[tentativas - 1]);
+                    }
+                }
+            }
         }
 
         if (!venceu) {
