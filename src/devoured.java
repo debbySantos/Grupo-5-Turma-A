@@ -345,16 +345,47 @@ public class devoured {
 
         if (personagemEdificuldade == 1) { // Kirk
             exibirNarrativa("Ola Kirk, bem-vindo à batalha final!");
-            String respostaCorreta = "senha.equals(\"DEV\")";
+            // Novo desafio fácil: uso de variável booleana em if
+            String respostaCorreta = "portaAberta == true";
             String[] dicas = {
-                    "Use .equals() para comparar Strings em Java.",
-                    "A condição deve ser verdadeira para liberar a porta.",
-                    "Cuidado com maiúsculas e minúsculas!"
+                    "Em Java, para verificar se uma variável booleana é verdadeira, use '== true' ou apenas a variável.",
+                    "A variável portaAberta já é booleana, então pode usar diretamente no if.",
+                    "Cuidado com o nome da variável e o operador de igualdade!"
             };
 
             while (tentativas < 6) {
-                System.out.println("DESAFIO KIRK: Complete a linha de código para liberar a porta:");
-                System.out.println("if (__________) { System.out.println(\"Acesso liberado!\"); }");
+                System.out.println("DESAFIO KIRK: Complete a linha de código para verificar se a porta está aberta:");
+                System.out.println("boolean portaAberta = true;");
+                System.out.println("if (__________) { System.out.println(\"A porta abriu!\"); }");
+                System.out.println("Digite sua resposta:");
+                input.nextLine();
+                String resposta = input.nextLine().trim();
+
+                if (resposta.equals(respostaCorreta)) {
+                    System.out.println("Parabéns, você venceu o boss!");
+                    venceu = true;
+                    break;
+                } else {
+                    tentativas++;
+                    System.out.println("Resposta incorreta! Tentativas restantes: " + (6 - tentativas));
+                    if (tentativas <= dicas.length) {
+                        System.out.println("DICA: " + dicas[tentativas - 1]);
+                    }
+                }
+            }
+        } else if (personagemEdificuldade == 2) { // Judy
+            exibirNarrativa("Ola Judy, prepare-se para o desafio final!");
+            String respostaCorreta = "idade >= 18 && chaveValida";
+            String[] dicas = {
+                    "Use o operador && para combinar condições.",
+                    "Verifique se idade é maior ou igual a 18.",
+                    "chaveValida deve ser true."
+            };
+
+            while (tentativas < 6) {
+                System.out.println("DESAFIO JUDY: Complete a condição do if para validar idade e chave:");
+                System.out.println(
+                        "if (________________________________) { System.out.println(\"Acesso concedido!\"); }");
                 System.out.println("Digite sua resposta:");
                 input.nextLine();
                 String resposta = input.nextLine().trim();
