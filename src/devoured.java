@@ -123,14 +123,20 @@ public class devoured {
                                                 "\nJudy - Judy já é a escolha para a pessoa que já tem um certo conhecimento na área e tem mais facilidade para programar e achar o erro que seria nosso nível médio de dificuldade dentro do jogo.\r\n" + //
                                                 "\nAvix - \tJá é uma escolha para o programador que já está na área de ADS e tem um amplo conhecimento e não vê dificuldade em resolver problemas mais elaborados.\r\n" + //
                                                 "\nAtenção: É muito importante você escolher o personagem que realmente representa seu nível de conhecimento para uma boa experiencia e desenvolvimento, por conta que o objetivo principal desse jogo é o aprendizado e desenvolvimento do player.\r\n" + //
-                                                ""); // Inserir aqui as instruções do jogo
+                                                "");
                     break;
                 case 2:
                     System.out.println("Entrando no jogo...");
                     jogar();
                     break;
                 case 3:
-                    System.out.println("Função sendo implementada"); // Inserir aqui os créditos do jogo
+                    System.out.println("\nCréditos:\n" +
+                            "Desenvolvedores: \n" +
+                            "1. Kauan Jota\n" +
+                            "2. Debora Santos\n" +
+                            "3. Jatobá\n" +
+                            "4. Vanessa\n" +
+                            "Agradecimentos especiais ao professor e mentor Takeo que nos apoiou durante o desenvolvimento.");
                     break;
                 case 4:
                     System.out.println("Saindo do jogo. Até a próxima jogador!!");
