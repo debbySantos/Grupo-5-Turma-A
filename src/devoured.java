@@ -1,5 +1,5 @@
 import java.util.*;
-
+// comentario de teste
 public class devoured {
     static int personagemEdificuldade = 0;
     // 1 = Fácil
