@@ -116,7 +116,14 @@ public class devoured {
             opcao = input.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Função sendo implementada"); // Inserir aqui as instruções do jogo
+                    System.out.println("\nDEVOURED\r\n" + //
+                                                "É um jogo de aventura em texto, criado especialmente para ajudar alunos de programação a praticarem lógica, leitura de código e tomada de decisões. O jogador escolhe entre três personagens, cada um representando um nível de dificuldade, o jogo é jogado via terminal, com comandos e escolhas numéricas, simulando decisões como \"entrar em um loop\", \"quebrar um padrão\", ou \"usar um item\". Cada decisão influencia o rumo da história e ajuda o jogador a treinar pensamento lógico, resolução de problemas e atenção aos detalhes \r\n" + //
+                                                "Sobre os personagens:\r\n" + //
+                                                "\nKirk  -  Esse personagem é a melhor escolha para quem começou agora nesse mundo da programação ele terá questões mais fáceis para resolver e dessa forma você irá se desenvolver melhor.\r\n" + //
+                                                "\nJudy - Judy já é a escolha para a pessoa que já tem um certo conhecimento na área e tem mais facilidade para programar e achar o erro que seria nosso nível médio de dificuldade dentro do jogo.\r\n" + //
+                                                "\nAvix - \tJá é uma escolha para o programador que já está na área de ADS e tem um amplo conhecimento e não vê dificuldade em resolver problemas mais elaborados.\r\n" + //
+                                                "\nAtenção: É muito importante você escolher o personagem que realmente representa seu nível de conhecimento para uma boa experiencia e desenvolvimento, por conta que o objetivo principal desse jogo é o aprendizado e desenvolvimento do player.\r\n" + //
+                                                ""); // Inserir aqui as instruções do jogo
                     break;
                 case 2:
                     System.out.println("Entrando no jogo...");
