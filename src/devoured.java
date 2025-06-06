@@ -413,7 +413,7 @@ public class devoured {
             System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
             // texto
         } else {
-            int dano = (int) (10 * (1 - Boss.defesa));
+            int dano = (int) (10 * (1 - Boss.defesa));  //INSERIR DEFESA DO PERSONAGEM, LÓGICA INCOERENTE
             vidaPersonagem -= dano;
             System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
         }
@@ -515,7 +515,40 @@ public class devoured {
 
             Boss(Boss.vida, Kirk.vida, Kirk.defesa);
         } else if (personagemEdificuldade == 2) {
-            // ADICIONAR A HISTÓRIA DA JUDY E CRIAR MAIS UM ELSE IF PRO AVIX
+            exibirNarrativa(
+                    "Você desperta em um ambiente distorcido, onde comandos flutuam e erros ganham forma física. A Zona de Compilação é instável — cada passo é um teste.\n");
+            exibirNarrativa(
+                    "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficarão presos para sempre nesse loop!”");
+            exibirNarrativa(
+                "AVINA: “Vetores são variáveis que guardam vários valores do mesmo tipo, organizados em uma lista com posições"");
+            exibirNarrativa("Andando pela sala, você encontra um código antigo corrompido. Apenas se preencher corretamente o vetor, a ponte de dados se reconstruirá.");
+         
+            // desafio02Medio(input);
+            String[] dicas = { "Observe os valores do vetor. Eles seguem uma ordem crescente.", "Cada número dentro das chaves { } representa uma posição do vetor."};
+            desafiosDoJogo("DESAFIO 1:Vetor Fragmentado ", "Complete o vetor com o valor que falta para sair desta sala:\n int[] dados = {10, 20, ___};",dicas, "30);
+            arvoreDeHabilidadesPopular();
+
+            exibirNarrativa("AVINA: Você conseguiu passar pelo primeiro desafio. Mas será que consegue atravessar a Cripta Binário?");
+            exibirNarrativa("Na Cripta Binária, os números flutuam sem ordem. Para destravar a próxima porta, você precisa organizar a matriz de 2x2 com os valores corretos.");
+           
+            String[] dicas2 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+
+            desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
+             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
+            dicas2, "idade >= 18 && chaveValida");
+           
+            arvoreDeHabilidadesPopular();
+
+            exibirNarrativa("AVINA: Você passou pelo firewall, mas, para sair do loop, é preciso entender ele.");
+            exibirNarrativa("For é uma estrutura de repetição usada para executar um bloco de código várias vezes, geralmente com um contador.");
+           
+            String[] dicas3 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+
+            desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
+             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
+            dicas3, "idade >= 18 && chaveValida");
+           
+            arvoreDeHabilidadesPopular();
         }
     }
 }
