@@ -42,9 +42,14 @@ public class devoured {
 
     static String[] habilidades = new String[3];
     static boolean[] habilidadesUsadas = new boolean[3];
-    static String[] habilidadesDisponiveis = {"Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
-            "Escudo de Erro Leve - Reduz o impacto de erros leves",
-            "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso"};
+    static String[] habilidadesDisponiveis =  {
+        "Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
+        "Escudo de Erro Leve - Reduz o impacto de erros leves",
+        "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso",
+        "Mapa Lógico: Visualiza todas as possibilidades de decisão.",
+        "Analisador de Condição: Permite simular o resultado de um if/else antes de rodar",
+        "Atalho Lógico: Permite resolver decisões com comandos curtos e rápidos.",
+};
     static int vida = 100;
 
 
