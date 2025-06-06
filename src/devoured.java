@@ -1,4 +1,5 @@
 import java.util.*;
+
 // comentario de teste
 public class devoured {
     static int personagemEdificuldade = 0;
@@ -42,17 +43,15 @@ public class devoured {
 
     static String[] habilidades = new String[3];
     static boolean[] habilidadesUsadas = new boolean[3];
-    static String[] habilidadesDisponiveis =  {
-        "Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
-        "Escudo de Erro Leve - Reduz o impacto de erros leves",
-        "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso",
-        "Mapa Lógico: Visualiza todas as possibilidades de decisão.",
-        "Analisador de Condição: Permite simular o resultado de um if/else antes de rodar",
-        "Atalho Lógico: Permite resolver decisões com comandos curtos e rápidos.",
-};
+    static String[] habilidadesDisponiveis = {
+            "Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
+            "Escudo de Erro Leve - Reduz o impacto de erros leves",
+            "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso",
+            "Mapa Lógico: Visualiza todas as possibilidades de decisão.",
+            "Analisador de Condição: Permite simular o resultado de um if/else antes de rodar",
+            "Atalho Lógico: Permite resolver decisões com comandos curtos e rápidos.",
+    };
     static int vida = 100;
-
-
 
     // REGISTRO INICIAL DO JOGADOR
 
@@ -122,13 +121,18 @@ public class devoured {
             switch (opcao) {
                 case 1:
                     System.out.println("\nDEVOURED\r\n" + //
-                                                "É um jogo de aventura em texto, criado especialmente para ajudar alunos de programação a praticarem lógica, leitura de código e tomada de decisões. O jogador escolhe entre três personagens, cada um representando um nível de dificuldade, o jogo é jogado via terminal, com comandos e escolhas numéricas, simulando decisões como \"entrar em um loop\", \"quebrar um padrão\", ou \"usar um item\". Cada decisão influencia o rumo da história e ajuda o jogador a treinar pensamento lógico, resolução de problemas e atenção aos detalhes \r\n" + //
-                                                "Sobre os personagens:\r\n" + //
-                                                "\nKirk  -  Esse personagem é a melhor escolha para quem começou agora nesse mundo da programação ele terá questões mais fáceis para resolver e dessa forma você irá se desenvolver melhor.\r\n" + //
-                                                "\nJudy - Judy já é a escolha para a pessoa que já tem um certo conhecimento na área e tem mais facilidade para programar e achar o erro que seria nosso nível médio de dificuldade dentro do jogo.\r\n" + //
-                                                "\nAvix - \tJá é uma escolha para o programador que já está na área de ADS e tem um amplo conhecimento e não vê dificuldade em resolver problemas mais elaborados.\r\n" + //
-                                                "\nAtenção: É muito importante você escolher o personagem que realmente representa seu nível de conhecimento para uma boa experiencia e desenvolvimento, por conta que o objetivo principal desse jogo é o aprendizado e desenvolvimento do player.\r\n" + //
-                                                "");
+                            "É um jogo de aventura em texto, criado especialmente para ajudar alunos de programação a praticarem lógica, leitura de código e tomada de decisões. O jogador escolhe entre três personagens, cada um representando um nível de dificuldade, o jogo é jogado via terminal, com comandos e escolhas numéricas, simulando decisões como \"entrar em um loop\", \"quebrar um padrão\", ou \"usar um item\". Cada decisão influencia o rumo da história e ajuda o jogador a treinar pensamento lógico, resolução de problemas e atenção aos detalhes \r\n"
+                            + //
+                            "Sobre os personagens:\r\n" + //
+                            "\nKirk  -  Esse personagem é a melhor escolha para quem começou agora nesse mundo da programação ele terá questões mais fáceis para resolver e dessa forma você irá se desenvolver melhor.\r\n"
+                            + //
+                            "\nJudy - Judy já é a escolha para a pessoa que já tem um certo conhecimento na área e tem mais facilidade para programar e achar o erro que seria nosso nível médio de dificuldade dentro do jogo.\r\n"
+                            + //
+                            "\nAvix - \tJá é uma escolha para o programador que já está na área de ADS e tem um amplo conhecimento e não vê dificuldade em resolver problemas mais elaborados.\r\n"
+                            + //
+                            "\nAtenção: É muito importante você escolher o personagem que realmente representa seu nível de conhecimento para uma boa experiencia e desenvolvimento, por conta que o objetivo principal desse jogo é o aprendizado e desenvolvimento do player.\r\n"
+                            + //
+                            "");
                     break;
                 case 2:
                     System.out.println("Entrando no jogo...");
@@ -210,7 +214,7 @@ public class devoured {
         int habilidade = 0;
         System.out.println("Bem-vindo a loja de habilidades");
 
-        if(habilidadesDisponiveis.length == 0) {
+        if (habilidadesDisponiveis.length == 0) {
             System.out.println("Nenhuma habilidade disponível no momento.");
             return habilidades;
         }
@@ -243,73 +247,81 @@ public class devoured {
 
         // habilidade = input.nextInt();
         // if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Luz de decisão");
-        //     habilidades[0] = "Luz de decisão";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Luz de decisão");
+        // habilidades[0] = "Luz de decisão";
+        // pontos--;
         // } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Escudo de Erro Leve");
-        //     habilidades[0] = "Escudo de Erro Leve";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Escudo de Erro Leve");
+        // habilidades[0] = "Escudo de Erro Leve";
+        // pontos--;
         // }
         // System.out.println("Bem-vindo a loja de habilidades");
         // System.out.println(
-        //         "Detector de Verdade: - 1 ponto (Indica se uma condição é verdadeira ou falsa.) - Digite 1 para escolher essa habilidade");
+        // "Detector de Verdade: - 1 ponto (Indica se uma condição é verdadeira ou
+        // falsa.) - Digite 1 para escolher essa habilidade");
         // System.out.println(
-        //         "Função Fantasma: - 1 ponto (Pode usar um modelo de função pré-criado como referência uma vez) - Digite 2 para escolher essa habilidade");
+        // "Função Fantasma: - 1 ponto (Pode usar um modelo de função pré-criado como
+        // referência uma vez) - Digite 2 para escolher essa habilidade");
         // System.out.println("Qual habilidade você deseja? ");
         // habilidade = input.nextInt();
         // if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Detector de Verdade");
-        //     habilidades[0] = "Detector de Verdade";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Detector de Verdade");
+        // habilidades[0] = "Detector de Verdade";
+        // pontos--;
         // } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Função Fantasma");
-        //     habilidades[0] = "Função Fantasma";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Função Fantasma");
+        // habilidades[0] = "Função Fantasma";
+        // pontos--;
 
         // }
         // ******************************************************************************************
         // System.out.println("Bem-vindo a loja de habilidades");
         // System.out.println(
-        //         "Contador Amigável: : - 1 ponto (Mostra na tela quantas vezes o laço será executado antes de começar) - Digite 1 para escolher essa habilidade");
+        // "Contador Amigável: : - 1 ponto (Mostra na tela quantas vezes o laço será
+        // executado antes de começar) - Digite 1 para escolher essa habilidade");
         // System.out.println(
-        //         "Guia de Vetor: - 1 ponto (Mostra visualmente onde o índice está acessando na matriz ou vetor.) - Digite 2 para escolher essa habilidade");
+        // "Guia de Vetor: - 1 ponto (Mostra visualmente onde o índice está acessando na
+        // matriz ou vetor.) - Digite 2 para escolher essa habilidade");
         // System.out.println("Qual habilidade você deseja? ");
         // habilidade = input.nextInt();
         // if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Contador Amigável");
-        //     habilidades[0] = "Contador Amigável";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Contador Amigável");
+        // habilidades[0] = "Contador Amigável";
+        // pontos--;
         // } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Guia de Vetor");
-        //     habilidades[0] = "Guia de Vetor";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Guia de Vetor");
+        // habilidades[0] = "Guia de Vetor";
+        // pontos--;
 
         // }
         // ******************************************************************************************
         // System.out.println("Bem-vindo a loja de habilidades");
         // System.out.println(
-        //         "Contador Amigável: : - 1 ponto (Mostra na tela quantas vezes o laço será executado antes de começar) - Digite 1 para escolher essa habilidade");
+        // "Contador Amigável: : - 1 ponto (Mostra na tela quantas vezes o laço será
+        // executado antes de começar) - Digite 1 para escolher essa habilidade");
         // System.out.println(
-        //         "Guia de Vetor: - 1 ponto (Mostra visualmente onde o índice está acessando na matriz ou vetor.) - Digite 2 para escolher essa habilidade");
+        // "Guia de Vetor: - 1 ponto (Mostra visualmente onde o índice está acessando na
+        // matriz ou vetor.) - Digite 2 para escolher essa habilidade");
         // System.out.println("Qual habilidade você deseja? ");
         // habilidade = input.nextInt();
         // if (pontos >= 1 && habilidade == 1 && habilidades[0] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Contador Amigável");
-        //     habilidades[0] = "Contador Amigável";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Contador Amigável");
+        // habilidades[0] = "Contador Amigável";
+        // pontos--;
         // } else if (pontos >= 1 && habilidade == 2 && habilidades[1] == null) {
-        //     System.out.println("Parábens você acaba de adquirir uma nova habilidade chamada Guia de Vetor");
-        //     habilidades[0] = "Guia de Vetor";
-        //     pontos--;
+        // System.out.println("Parábens você acaba de adquirir uma nova habilidade
+        // chamada Guia de Vetor");
+        // habilidades[0] = "Guia de Vetor";
+        // pontos--;
 
         // }
-
-
-
-
-
-        
 
         return habilidades;
     }
@@ -418,7 +430,7 @@ public class devoured {
             System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
             // texto
         } else {
-            int dano = (int) (10 * (1 - Boss.defesa));  //INSERIR DEFESA DO PERSONAGEM, LÓGICA INCOERENTE
+            int dano = (int) (10 * (1 - Kirk.defesa)); // INSERIR DEFESA DO PERSONAGEM, LÓGICA INCOERENTE
             vidaPersonagem -= dano;
             System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
         }
@@ -441,7 +453,7 @@ public class devoured {
             System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
                                                                                                         // texto
         } else {
-            int dano = (int) (10 * (1 - Boss.defesa));
+            int dano = (int) (10 * (1 - Kirk.defesa));
             vidaPersonagem -= dano;
             System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
         }
@@ -462,7 +474,7 @@ public class devoured {
             System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
                                                                                                         // texto
         } else {
-            int dano = (int) (10 * (1 - Boss.defesa));
+            int dano = (int) (10 * (1 - Kirk.defesa));
             vidaPersonagem -= dano;
             System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
         }
@@ -484,39 +496,50 @@ public class devoured {
             exibirNarrativa(
                     "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficaram presos para sempre nesse loop!”");
             exibirNarrativa(
-                "AVINA: “Tente passar pela Porta Condicional.\n Uma estrutura condicional permite tomar decisões no código, executando comandos somente se uma condição for verdadeira.”");
-            exibirNarrativa("Você encontra um terminal com o aviso:\n Digite o comando que libera a porta se a variável senha for igual a \"DEV\"");
+                    "AVINA: “Tente passar pela Porta Condicional.\n Uma estrutura condicional permite tomar decisões no código, executando comandos somente se uma condição for verdadeira.”");
+            exibirNarrativa(
+                    "Você encontra um terminal com o aviso:\n Digite o comando que libera a porta se a variável senha for igual a \"DEV\"");
             // desafio01Facil(input);
-            String[] dicas = { "Quando for comparar textos (Strings) em Java, use o método .equals() e não ==.", "A condição dentro do if deve ser verdadeira para que o código dentro das chaves seja executado.", "O método .equals() diferencia letras maiúsculas de minúsculas. Ou seja, \"DEV\" é diferente de \"dev\"." };
+            String[] dicas = { "Quando for comparar textos (Strings) em Java, use o método .equals() e não ==.",
+                    "A condição dentro do if deve ser verdadeira para que o código dentro das chaves seja executado.",
+                    "O método .equals() diferencia letras maiúsculas de minúsculas. Ou seja, \"DEV\" é diferente de \"dev\"." };
             desafiosDoJogo("DESAFIO 1:Porta Condicional ", "Complete a linha de código abaixo corretamente:\n" + //
-                                "\n" + //
-                                "if (__________) {\n" + //
-                                "    System.out.println(\"Acesso liberado!\");\n" + //
-                                "}", dicas, "senha.equals(\"DEV\")");
+                    "\n" + //
+                    "if (__________) {\n" + //
+                    "    System.out.println(\"Acesso liberado!\");\n" + //
+                    "}", dicas, "senha.equals(\"DEV\")");
             arvoreDeHabilidadesPopular();
 
-            exibirNarrativa("AVINA: Você conseguiu passar pelo primeiro desafio. Mas será que consegue atravessar o Firewall?");
-            exibirNarrativa("Você encontra uma nova porta. O Firewall!\n O firewall da IA exige que você tenha idade maior ou igual a 18 e esteja com uma chave válida para passar.");
-           
-            String[] dicas2 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+            exibirNarrativa(
+                    "AVINA: Você conseguiu passar pelo primeiro desafio. Mas será que consegue atravessar o Firewall?");
+            exibirNarrativa(
+                    "Você encontra uma nova porta. O Firewall!\n O firewall da IA exige que você tenha idade maior ou igual a 18 e esteja com uma chave válida para passar.");
+
+            String[] dicas2 = {
+                    "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.",
+                    "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.",
+                    "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
 
             desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
-             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas2, "idade >= 18 && chaveValida");
-            
+                    "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
+                    dicas2, "idade >= 18 && chaveValida");
+
             arvoreDeHabilidadesPopular();
 
             exibirNarrativa("AVINA: Você passou pelo firewall, mas, para sair do loop, é preciso entender ele.");
-            exibirNarrativa("For é uma estrutura de repetição usada para executar um bloco de código várias vezes, geralmente com um contador.");
-           
-            String[] dicas3 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+            exibirNarrativa(
+                    "For é uma estrutura de repetição usada para executar um bloco de código várias vezes, geralmente com um contador.");
+
+            String[] dicas3 = {
+                    "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.",
+                    "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.",
+                    "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
 
             desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
-             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas3, "idade >= 18 && chaveValida");
-            
-            arvoreDeHabilidadesPopular();
+                    "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
+                    dicas3, "idade >= 18 && chaveValida");
 
+            arvoreDeHabilidadesPopular();
 
             Boss(Boss.vida, Kirk.vida, Kirk.defesa);
         } else if (personagemEdificuldade == 2) {
@@ -525,35 +548,163 @@ public class devoured {
             exibirNarrativa(
                     "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficarão presos para sempre nesse loop!”");
             exibirNarrativa(
-                "AVINA: “Vetores são variáveis que guardam vários valores do mesmo tipo, organizados em uma lista com posições"");
-            exibirNarrativa("Andando pela sala, você encontra um código antigo corrompido. Apenas se preencher corretamente o vetor, a ponte de dados se reconstruirá.");
-         
-            // desafio02Medio(input);
-            String[] dicas = { "Observe os valores do vetor. Eles seguem uma ordem crescente.", "Cada número dentro das chaves { } representa uma posição do vetor."};
-            desafiosDoJogo("DESAFIO 1:Vetor Fragmentado ", "Complete o vetor com o valor que falta para sair desta sala:\n int[] dados = {10, 20, ___};",dicas, "30);
+                    "AVINA: “Agora, enfrente a Sala dos Laços Ocultos. Aqui, só passa quem entende como manipular arrays e loops juntos.”");
+            exibirNarrativa(
+                    "No centro da sala, um painel exibe um array de inteiros. Para abrir a porta, você precisa somar todos os valores pares do array usando um laço for. Complete o código corretamente.");
+
+            String[] dicas = {
+                    "Use um laço for para percorrer todos os elementos do array.",
+                    "Para verificar se um número é par, utilize o operador % (resto da divisão por 2).",
+                    "Lembre-se de somar apenas os valores pares ao total."
+            };
+            desafiosDoJogo(
+                    "DESAFIO 1: Soma dos Pares",
+                    "Complete a linha dentro do for para somar apenas os valores pares do array:\n" +
+                            "int[] numeros = {3, 8, 5, 12, 7};\n" +
+                            "int soma = 0;\n" +
+                            "for (int i = 0; i < numeros.length; i++) {\n" +
+                            "    // Complete aqui:\n" +
+                            "    __________________________\n" +
+                            "}\n" +
+                            "System.out.println(\"Soma dos pares: \" + soma);",
+                    dicas,
+                    "if (numeros[i] % 2 == 0) soma += numeros[i];");
             arvoreDeHabilidadesPopular();
 
-            exibirNarrativa("AVINA: Você conseguiu passar pelo primeiro desafio. Mas será que consegue atravessar a Cripta Binário?");
-            exibirNarrativa("Na Cripta Binária, os números flutuam sem ordem. Para destravar a próxima porta, você precisa organizar a matriz de 2x2 com os valores corretos.");
-           
-            String[] dicas2 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+            exibirNarrativa("AVINA: Você dominou os laços, mas agora precisa decifrar a Matriz Cifrada.");
+            exibirNarrativa(
+                    "Na Matriz Cifrada, cada linha representa um código. Para avançar, descubra o maior valor presente em toda a matriz 3x3.");
 
-            desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
-             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas2, "idade >= 18 && chaveValida");
-           
+            String[] dicas2 = {
+                    "Use dois laços for aninhados para percorrer todas as posições da matriz.",
+                    "Mantenha uma variável para armazenar o maior valor encontrado.",
+                    "Compare cada elemento da matriz com o valor atual da variável de maior valor."
+            };
+
+            desafiosDoJogo(
+                    "DESAFIO 2: Maior Valor da Matriz",
+                    "Complete a linha dentro do for para atualizar o maior valor encontrado:\n" +
+                            "int[][] matriz = {\n" +
+                            "    {4, 9, 2},\n" +
+                            "    {7, 5, 6},\n" +
+                            "    {3, 8, 1}\n" +
+                            "};\n" +
+                            "int maior = matriz[0][0];\n" +
+                            "for (int i = 0; i < matriz.length; i++) {\n" +
+                            "    for (int j = 0; j < matriz[i].length; j++) {\n" +
+                            "        // Complete aqui:\n" +
+                            "        __________________________\n" +
+                            "    }\n" +
+                            "}\n" +
+                            "System.out.println(\"Maior valor: \" + maior);",
+                    dicas2,
+                    "if (matriz[i][j] > maior) maior = matriz[i][j];");
             arvoreDeHabilidadesPopular();
 
-            exibirNarrativa("AVINA: Você passou pelo firewall, mas, para sair do loop, é preciso entender ele.");
-            exibirNarrativa("For é uma estrutura de repetição usada para executar um bloco de código várias vezes, geralmente com um contador.");
-           
-            String[] dicas3 = { "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.", "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.", "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+            exibirNarrativa(
+                    "AVINA: Impressionante! Mas só quem entende lógica condicional escapa do Labirinto dos Switches.");
+            exibirNarrativa(
+                    "Você encontra um painel com um switch-case incompleto. Complete para que, ao receber o valor 2, imprima 'Dois encontrado!'.");
 
-            desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
-             "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) {\n System.out.println(\"Acesso concedido!\");",
-            dicas3, "idade >= 18 && chaveValida");
-           
+            String[] dicas3 = {
+                    "O comando 'case' é seguido pelo valor que você deseja comparar.",
+                    "Não esqueça do 'break' após cada caso para evitar execução indesejada.",
+                    "O comando 'System.out.println' deve estar dentro do bloco do case."
+            };
+
+            desafiosDoJogo(
+                    "DESAFIO 3: Labirinto dos Switches",
+                    "Complete o bloco do switch-case para imprimir corretamente:\n" +
+                            "int valor = 2;\n" +
+                            "switch (valor) {\n" +
+                            "    // Complete aqui:\n" +
+                            "    __________________________\n" +
+                            "}",
+                    dicas3,
+                    "case 2: System.out.println(\"Dois encontrado!\"); break;");
             arvoreDeHabilidadesPopular();
+
+            Boss(Boss.vida, Judy.vida, Judy.defesa);
+            if (personagemEdificuldade == 3) {
+                exibirNarrativa(
+                        "Você desperta em um ambiente distorcido, onde comandos flutuam e erros ganham forma física. A Zona de Compilação é instável — cada passo é um teste.\n");
+                exibirNarrativa(
+                        "AVINA: “Humanos não programam mais. Eles suplicam por respostas prontas. Agora, ou vocês aprendem para sobreviver, ou ficarão presos para sempre nesse loop!”");
+                exibirNarrativa(
+                        "AVINA: “Agora, enfrente a Sala dos Algoritmos Avançados. Aqui, só passa quem domina lógica, arrays multidimensionais e recursão.”");
+                exibirNarrativa(
+                        "No centro da sala, um painel exibe uma matriz de inteiros. Para abrir a porta, você precisa calcular a soma de todos os elementos da diagonal principal e da diagonal secundária de uma matriz 3x3. Complete o código corretamente.");
+
+                String[] dicasDiagonal = {
+                        "A diagonal principal de uma matriz NxN tem elementos onde o índice da linha é igual ao índice da coluna (i == j).",
+                        "A diagonal secundária tem elementos onde a soma dos índices é igual a N-1 (i + j == matriz.length - 1).",
+                        "Cuidado para não somar o elemento central duas vezes em matrizes de ordem ímpar."
+                };
+                desafiosDoJogo(
+                        "DESAFIO 1: Soma das Diagonais",
+                        "Complete o código para somar os elementos das duas diagonais de uma matriz 3x3:\n" +
+                                "int[][] matriz = {\n" +
+                                "    {4, 9, 2},\n" +
+                                "    {7, 5, 6},\n" +
+                                "    {3, 8, 1}\n" +
+                                "};\n" +
+                                "int soma = 0;\n" +
+                                "for (int i = 0; i < matriz.length; i++) {\n" +
+                                "    // Complete aqui:\n" +
+                                "    __________________________\n" +
+                                "}\n" +
+                                "System.out.println(\"Soma das diagonais: \" + soma);",
+                        dicasDiagonal,
+                        "soma += matriz[i][i]; if(i != matriz.length-1-i) soma += matriz[i][matriz.length-1-i];");
+                arvoreDeHabilidadesPopular();
+
+                exibirNarrativa("AVINA: Você dominou as diagonais, mas agora precisa decifrar o Enigma Recursivo.");
+                exibirNarrativa(
+                        "Para avançar, implemente a chamada recursiva correta para calcular o fatorial de um número n.");
+
+                String[] dicasFatorial = {
+                        "A recursão ocorre quando uma função chama a si mesma.",
+                        "O caso base para o fatorial é quando n == 0, retornando 1.",
+                        "A chamada recursiva deve multiplicar n pelo fatorial de n-1."
+                };
+                desafiosDoJogo(
+                        "DESAFIO 2: Fatorial Recursivo",
+                        "Complete a linha de código para a chamada recursiva do fatorial:\n" +
+                                "int fatorial(int n) {\n" +
+                                "    if (n == 0) return 1;\n" +
+                                "    // Complete aqui:\n" +
+                                "    __________________________\n" +
+                                "}",
+                        dicasFatorial,
+                        "return n * fatorial(n - 1);");
+                arvoreDeHabilidadesPopular();
+
+                exibirNarrativa(
+                        "AVINA: Impressionante! Só quem entende manipulação de Strings escapa do Labirinto dos Palíndromos.");
+                exibirNarrativa(
+                        "Complete o código para verificar se uma String é palíndromo (lê igual de trás para frente).");
+
+                String[] dicasPalindromo = {
+                        "Compare os caracteres do início e do fim da String, avançando para o centro.",
+                        "Se algum par de caracteres for diferente, a String não é palíndromo.",
+                        "Use um laço for para percorrer até a metade da String."
+                };
+                desafiosDoJogo(
+                        "DESAFIO 3: Verificador de Palíndromo",
+                        "Complete a linha de código dentro do for para comparar os caracteres:\n" +
+                                "String palavra = \"arara\";\n" +
+                                "boolean ehPalindromo = true;\n" +
+                                "for (int i = 0; i < palavra.length() / 2; i++) {\n" +
+                                "    // Complete aqui:\n" +
+                                "    __________________________\n" +
+                                "}\n" +
+                                "System.out.println(\"É palíndromo? \" + ehPalindromo);",
+                        dicasPalindromo,
+                        "if (palavra.charAt(i) != palavra.charAt(palavra.length() - 1 - i)) ehPalindromo = false;");
+                arvoreDeHabilidadesPopular();
+
+                Boss(Boss.vida, Avix.vida, Avix.defesa);
+            }
         }
     }
 }
