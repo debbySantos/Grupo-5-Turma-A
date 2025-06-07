@@ -1,34 +1,36 @@
+
 import java.util.*;
 
-// comentario de teste
 public class devoured {
     static int personagemEdificuldade = 0;
-    // 1 = Fácil
-    // 2 = Médio
-    // 3 = Difícil
 
-    // STATUS DOS PERSONAGENS
+    /**
+     * Classe representando o personagem Kirk (nível fácil).
+     */
     public class Kirk {
-
-        String nome = "Kirk";
         static float defesa = 0;
         static int vida = 120;
     }
 
+    /**
+     * Classe representando a personagem Judy (nível médio).
+     */
     public class Judy {
-
-        String nome = "Judy";
         static float defesa = 0.25f;
         static int vida = 100;
     }
 
+    /**
+     * Classe representando o personagem Avix (nível difícil).
+     */
     public class Avix {
-
-        String nome = "Avix";
         static float defesa = 0.50f;
         static int vida = 80;
     }
 
+    /**
+     * Classe representando o Boss final do jogo.
+     */
     public class Boss {
         static int vida = 100;
         static float defesa = 0.50f;
@@ -38,32 +40,34 @@ public class devoured {
     static String nome = "";
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
-
     static int pontos = 0;
-
     static String[] habilidades = new String[3];
     static boolean[] habilidadesUsadas = new boolean[3];
     static String[] habilidadesDisponiveis = {
-            "Luz de decisão - Habilidade de iluminar o caminho e revelar segredos ocultos",
-            "Escudo de Erro Leve - Reduz o impacto de erros leves",
-            "Contra-Ataque - Responde a ataques inimigos com um ataque poderoso",
-            "Mapa Lógico: Visualiza todas as possibilidades de decisão.",
-            "Analisador de Condição: Permite simular o resultado de um if/else antes de rodar",
-            "Atalho Lógico: Permite resolver decisões com comandos curtos e rápidos.",
+        "Ataque Aprimorado - Aumenta o dano causado ao boss",
+        "Defesa Reforçada - Reduz o dano recebido do boss",
+        "Vida Extra - Ganha uma quantidade adicional de vida",
+        "Dano Crítico - Chance de causar dano dobrado",
+        "Regeneração - Recupera vida a cada rodada",
+        "Escudo Temporário - Anula o próximo ataque do boss"
     };
-    static int vida = 100;
 
-    // REGISTRO INICIAL DO JOGADOR
 
+
+    /**
+     * Realiza o registro inicial do jogador, solicitando o nome e retornando o nome informado.
+     */
     public static String registroPlayer() {
         System.out.println("Bem-vindo(a) ao Devoured, digite seu nome: ");
-        input.nextLine();
+        if (input.hasNextLine()) input.nextLine();
         nome = input.nextLine();
         return nome;
     }
 
-    // ESCOLHA DO PERSONAGEM E DIFICULDADE
 
+    /**
+     * Permite ao jogador escolher o personagem e define a dificuldade do jogo. Retorna o código do personagem/dificuldade escolhido.
+     */
     public static int escolhaPersonagem() {
 
         System.out.printf(
@@ -90,7 +94,10 @@ public class devoured {
         return personagemEdificuldade;
     }
 
-    // IMPRIMIR TEXTO REFERENTE A ESCOLHA DO PERSONAGEM
+
+    /**
+     * Imprime um resumo da escolha do personagem e informa a dificuldade selecionada.
+     */
     public static void resumoEscolhaImprimir() {
         switch (personagemEdificuldade) {
             case 1:
@@ -106,8 +113,12 @@ public class devoured {
         }
     }
 
-    // MENU DO JOGO
+
+    /**
+     * Exibe o menu principal do jogo e gerencia as opções do usuário.
+     */
     public static void iniciarMenu() {
+
         int opcao = 0;
 
         do {
@@ -158,32 +169,44 @@ public class devoured {
         } while (opcao != 4);
     }
 
-    // FUNÇÃO PARA NARRATIVA FORMATADA
+
+    /**
+     * Exibe um texto de narrativa formatado com separadores visuais. Recebe o texto da narrativa a ser exibido.
+     */
     public static void exibirNarrativa(String texto) {
+        System.out.println("\n=================================================");
         System.out.println();
         System.out.println(">>> " + texto);
         System.out.println();
+        System.out.println("=================================================\n");
     }
 
-    // FUNÇÃO PARA DESAFIOS MENORES
-    public static int desafiosDoJogo(String titulo, String enunciado, String[] dicasDaFase, String respostaCorreta) {
-        System.out.println("DESAFIO " + titulo);
-        System.out.println(enunciado);
 
-        input.nextLine();
+    /**
+     * Gerencia desafios menores do jogo, permitindo tentativas, dicas e pontuação. Recebe o título, enunciado, dicas e resposta correta. Retorna a pontuação atualizada após o desafio.
+     */
+    public static int desafiosDoJogo(String titulo, String enunciado, String[] dicasDaFase, String respostaCorreta) {
+        System.out.println("\n====================");
+        System.out.println("DESAFIO " + titulo);
+        System.out.println();
+        System.out.println(enunciado);
+        System.out.println("====================\n");
+
+        if (input.hasNextLine()) input.nextLine();
+        System.out.print("\nSua resposta: ");
         String resposta = input.nextLine().trim();
 
         List<String> dicas = new ArrayList<>(Arrays.asList(dicasDaFase));
 
         while (!resposta.equals(respostaCorreta)) {
-            System.out.println("Resposta errada");
-            System.out.println("1 - tentar novamente");
-            System.out.println("2 - utilizar uma dica");
+            System.out.println("\nResposta errada!");
+            System.out.println("1 - Tentar novamente");
+            System.out.println("2 - Utilizar uma dica");
             System.out.println("3 - Sair do jogo");
             int escolha = input.nextInt();
             if (escolha == 1) {
-                System.out.println("Digite novamente sua resposta");
-                input.nextLine();
+                System.out.print("\nDigite novamente sua resposta: ");
+                if (input.hasNextLine()) input.nextLine();
                 resposta = input.nextLine().trim();
             } else if (escolha == 2) {
                 if (!dicas.isEmpty()) {
@@ -191,9 +214,9 @@ public class devoured {
                     int indice = random.nextInt(dicas.size());
 
                     String dicaSorteada = dicas.remove(indice);
-                    System.out.println("DICA: " + dicaSorteada);
+                    System.out.println("\nDICA: " + dicaSorteada + "\n");
                 } else {
-                    System.out.println("Voce ja usou todas suas dicas");
+                    System.out.println("\nVocê já usou todas as suas dicas!\n");
                 }
             } else if (escolha == 3) {
                 System.exit(0);
@@ -201,59 +224,82 @@ public class devoured {
             }
         }
 
-        System.out.println(
-                "Parabéns, você conseguiu passar por esse desafio! \n Agora um novo foi desbloqueado. \n Boa sorte! ");
+        System.out.println("\nParabéns, você conseguiu passar por esse desafio!");
+        System.out.println("Agora um novo foi desbloqueado. Boa sorte!\n");
         pontos++;
         System.out.println("Você ganhou pontos por completar o desafio.\n Agora você possui: " + pontos);
         return pontos;
 
     }
 
-    // HABILIDADES DO JOGO
-    public static String[] arvoreDeHabilidadesPopular() {
-        int habilidade = 0;
-        System.out.println("Bem-vindo a loja de habilidades");
 
+    /**
+     * Permite ao jogador adquirir habilidades gastando pontos. Retorna o array de habilidades adquiridas.
+     */
+    public static String[] arvoreDeHabilidadesPopular() {
+        System.out.println("\n====================");
+        System.out.println("Bem-vindo à loja de habilidades!");
         if (habilidadesDisponiveis.length == 0) {
             System.out.println("Nenhuma habilidade disponível no momento.");
             return habilidades;
         }
-
-        do {
+        boolean comprou = false;
+        while (pontos > 0 && !comprou) {
+            System.out.println();
+            System.out.println("Você tem " + pontos + " ponto(s) para gastar.");
             System.out.println("Habilidades disponíveis:");
             for (int i = 0; i < habilidadesDisponiveis.length; i++) {
-                System.out.println((i + 1) + " - " + habilidadesDisponiveis[i]);
+                boolean jaTem = false;
+                for (String h : habilidades) {
+                    if (h != null && h.equals(habilidadesDisponiveis[i].split(" - ")[0])) {
+                        jaTem = true;
+                        break;
+                    }
+                }
+                if (!jaTem) {
+                    System.out.println((i + 1) + " - " + habilidadesDisponiveis[i]);
+                }
             }
-            System.out.println("Qual habilidade você deseja adquirir? ");
-
-            habilidade = input.nextInt();
-            if (habilidade < 1 || habilidade > habilidadesDisponiveis.length) {
-                System.out.println("Habilidade inválida. Tente novamente.");
+            System.out.print("\nDigite o número da habilidade que deseja adquirir (ou 0 para sair): ");
+            int escolha = input.nextInt();
+            if (escolha == 0) break;
+            if (escolha < 1 || escolha > habilidadesDisponiveis.length) {
+                System.out.println("\nEscolha inválida.\n");
                 continue;
             }
-
-            String habilidadeEscolhida = habilidadesDisponiveis[habilidade - 1];
-            if (pontos >= 1 && habilidades[habilidade - 1] == null) {
-                System.out.println("Parabéns, você acaba de adquirir a habilidade: " + habilidadeEscolhida);
-                habilidades[habilidade - 1] = habilidadeEscolhida.split(" - ")[0];
-                pontos--;
-                habilidadesDisponiveis = Arrays.copyOfRange(habilidadesDisponiveis, 0, habilidade - 1);
-
-                return habilidades;
-            } else {
-                System.out.println("Você não tem pontos suficientes ou já adquiriu essa habilidade.");
+            String nomeHabilidade = habilidadesDisponiveis[escolha - 1].split(" - ")[0];
+            boolean jaTem = false;
+            for (String h : habilidades) {
+                if (h != null && h.equals(nomeHabilidade)) {
+                    jaTem = true;
+                    break;
+                }
             }
-        } while (habilidadesDisponiveis.length > 0);
-
-
+            if (jaTem) {
+                System.out.println("\nVocê já possui essa habilidade.\n");
+                continue;
+            }
+            for (int i = 0; i < habilidades.length; i++) {
+                if (habilidades[i] == null) {
+                    habilidades[i] = nomeHabilidade;
+                    pontos--;
+                    System.out.println("\nParabéns, você adquiriu: " + nomeHabilidade + "\n");
+                    comprou = true;
+                    break;
+                }
+            }
+        }
         return habilidades;
     }
 
-    // USO DAS HABILIDADES
+
+    /**
+     * Permite ao jogador utilizar habilidades adquiridas antes da batalha final. Recebe um array contendo a vida atual do boss.
+     */
     public static void usarHabilidades(int[] vidaBoss) {
         for (int i = 0; i < habilidades.length; i++) {
             if (habilidades[i] != null && !habilidadesUsadas[i]) {
-                System.out.printf("Deseja utilizar %s ? Digite 1 para sim e 0 para não", habilidades[i]);
+                System.out.printf("\nDeseja utilizar %s? Digite 1 para sim e 0 para não: ", habilidades[i]);
                 int escolha = input.nextInt();
 
                 if (escolha == 1) {
@@ -261,12 +307,10 @@ public class devoured {
                         case "teste diminuir vida do boss":
                             int reducao = vidaBoss[0] * 5 / 100;
                             vidaBoss[0] -= reducao;
-                            System.out.printf(
-                                    "Graças a sua habilidade tatta a vida do boss foi reduzida em %d para %d \n",
-                                    reducao, vidaBoss[0]);
+                            System.out.printf("\nGraças à sua habilidade, a vida do boss foi reduzida em %d para %d.\n", reducao, vidaBoss[0]);
                             break;
                         case "Luz de decisão":
-                            System.out.println("DICA TAL TAL TAL"); // implementar array com dicas aleatorias referentes
+                            System.out.println("\nDICA: (habilidade de dica ativada)\n"); // implementar array com dicas aleatorias referentes
                                                                     // ao tipo de boss que essa habilidade pertence ou
                                                                     // remover essa habilidade, ela é apenas um exemplo
                             break;
@@ -280,103 +324,236 @@ public class devoured {
         }
     }
 
-    // FUNÇÃO PARA BATALHA FINAL COM O BOSS
-    // O PERSONAGEM DEVE GANHAR OU PERDER EM ATÉ 6 TENTATIVAS, ESCOLHER UM BOM VALOR
-    // DE DANO PARA QUE ELE CONSIGA NÃO FICAR PRESO NA BATALHA PRA SEMPRE
-    // COLOCAR VALORES QUE TORNEM POSSÍVEL AINDA SIM GANHAR OU PERDER EM 6
-    // TENTATIVAS NOS SETS DE DEFESA E VIDA DAS HABILIDADES
+
+    /**
+     * Gerencia a batalha final contra o boss, aplicando habilidades e lógica de combate. Recebe a vida inicial do boss, vida inicial do personagem e defesa do personagem.
+     */
     public static void Boss(int vidaBoss, int vidaPersonagem, float defesaPersonagem) {
+        exibirNarrativa("Ola Kirk, bem-vindo à batalha final!");
+        System.out.println("\n====================\n");
 
-        exibirNarrativa("Ola Kirk bem vindo a primeira batalha");
+        // Flags e bônus das habilidades
+        int bonusAtaque = 0;
+        float bonusDefesaPersonagem = 0f;
+        int vidaExtra = 0;
+        boolean danoCritico = false;
+        boolean regeneracao = false;
+        boolean escudoTemporario = false;
+        boolean escudoAtivo = false;
 
-        String[][] perguntas = { { "Qual estrutura de repetição é mais apropriada quando se sabe exatamente o número de vezes que o laço deve ser executado?", "A - while", "B - do while", "C - for", "D - if-else", "C", "alternativa" },{ "Qual das opções abaixo representa um laço que sempre executa pelo menos uma vez, independentemente da condição?", "A - while", "B - for", "C - do while", "D - Nenhum dos anteriores", "C", "alternativa" },
-                { "Pergunta teste 2", "escreva", "", "", "", "1", "escrever" },
-                { "Complete: int[] numeros = new ____[5];", "", "", "", "", "int", "completar" } }; // INSERIR AQUI AS
-                                                                                                    // QUESTÕES, A
-                                                                                                    // ÚLTIMA POSIÇÃO É
-                                                                                                    // O QUE ELA É E A
-                                                                                                    // PENÚLTIMA É A
-                                                                                                    // RESPOSTA CORRETA
-        int tentativas = 0;
-        while (vidaBoss > 0 && vidaPersonagem > 0 && tentativas < 6) {
-            int sorteio = random.nextInt(perguntas.length);
-            String[] pergunta = perguntas[sorteio];
+        // Checa habilidades adquiridas
+        for (int i = 0; i < habilidades.length; i++) {
+            if (habilidades[i] != null) {
+                switch (habilidades[i]) {
+                    case "Ataque Aprimorado":
+                        bonusAtaque += 10;
+                        break;
+                    case "Defesa Reforçada":
+                        bonusDefesaPersonagem += 0.2f;
+                        break;
+                    case "Vida Extra":
+                        vidaExtra += 30;
+                        break;
+                    case "Dano Crítico":
+                        danoCritico = true;
+                        break;
+                    case "Regeneração":
+                        regeneracao = true;
+                        break;
+                    case "Escudo Temporário":
+                        escudoTemporario = true;
+                        break;
+                }
+            }
+        }
+        vidaPersonagem += vidaExtra;
+
+        String[][] perguntas = {
+            { "Qual estrutura de repetição é mais apropriada quando se sabe exatamente o número de vezes que o laço deve ser executado?", "A - while", "B - do while", "C - for", "D - if-else", "C", "alternativa" },
+            { "Qual das opções abaixo representa um laço que sempre executa pelo menos uma vez, independentemente da condição?", "A - while", "B - for", "C - do while", "D - Nenhum dos anteriores", "C", "alternativa" },
+            { "Qual palavra-chave é usada para sair imediatamente de um laço em Java?", "A - continue", "B - break", "C - exit", "D - stop", "B", "alternativa" },
+            { "Qual destas estruturas é usada para tomar decisões em Java?", "A - for", "B - if", "C - while", "D - switch", "B", "alternativa" },
+            { "O que o operador '==' compara em Java?", "A - Referência de objetos", "B - Conteúdo de strings", "C - Valores primitivos", "D - Tamanho de arrays", "C", "alternativa" },
+            { "Qual destas opções representa um array de inteiros em Java?", "A - int[] numeros", "B - int numeros[]", "C - int numeros", "D - array int[]", "A", "alternativa" },
+            { "Como se chama o bloco que captura exceções em Java?", "A - try", "B - catch", "C - throw", "D - finally", "B", "alternativa" },
+            { "Qual destas opções declara corretamente uma variável booleana?", "A - boolean ativo = true;", "B - bool ativo = 1;", "C - boolean ativo = 'true';", "D - int ativo = true;", "A", "alternativa" },
+            { "Qual método converte uma string para minúsculas em Java?", "A - toLower()", "B - lowerCase()", "C - toLowerCase()", "D - minuscule()", "C", "alternativa" },
+            { "Qual destas opções é usada para ler dados do teclado em Java?", "A - Scanner", "B - InputStream", "C - System.in", "D - Reader", "A", "alternativa" },
+            { "Qual destas opções representa um laço infinito?", "A - for(;;)", "B - while(true)", "C - do{}while(true)", "D - Todas as anteriores", "D", "alternativa" }
+        };
+
+        String[] dicasPerguntas = {
+            "Dica: Use quando o número de repetições é conhecido.",
+            "Dica: Pense em laços que garantem pelo menos uma execução.",
+            "Dica: Palavra-chave que interrompe o laço.",
+            "Dica: Estrutura condicional clássica.",
+            "Dica: Só funciona para tipos primitivos.",
+            "Dica: Arrays em Java usam colchetes.",
+            "Dica: O bloco que trata erros vem logo após o try.",
+            "Dica: O tipo booleano só aceita true ou false.",
+            "Dica: Procure pelo método correto da classe String.",
+            "Dica: Classe muito usada para entrada de dados.",
+            "Dica: Todas as formas criam laços sem condição de parada explícita."
+        };
+        // int tentativas = 0; // Não utilizado
+        // Embaralha as perguntas para garantir aleatoriedade
+        List<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < perguntas.length; i++) indices.add(i);
+        Collections.shuffle(indices);
+
+
+        int maxPerguntas = Math.min(6, perguntas.length);
+        float defesaBossEfetiva = Boss.defesa;
+        float defesaPersonagemEfetiva = defesaPersonagem + bonusDefesaPersonagem;
+        int vidaBossMax = vidaBoss;
+        int vidaPersonagemMax = vidaPersonagem;
+        int danoBoss = (int) Math.ceil((float)vidaPersonagemMax / maxPerguntas);
+        int danoPlayer = (int) Math.ceil((float)vidaBossMax / maxPerguntas) + bonusAtaque + 20;
+
+        int i = 0;
+        boolean batalhaFinalizada = false;
+        while (i < maxPerguntas && !batalhaFinalizada) {
+            int idx = indices.get(i);
+            String[] pergunta = perguntas[idx];
             String tipo = pergunta[6];
 
-            int[] resultado = { 0, 0 };
+            // Exibe a dica correspondente
+            System.out.println();
+            System.out.println("DICA: " + dicasPerguntas[idx]);
+            System.out.println();
 
+            int[] resultado = { vidaBoss, vidaPersonagem };
+
+            // --- Dano crítico ---
+            int danoPlayerRodada = danoPlayer;
+            if (danoCritico && Math.random() < 0.25) { // 25% de chance
+                System.out.println();
+                System.out.println("DANO CRÍTICO! Você causou dano dobrado ao boss!");
+                System.out.println();
+                danoPlayerRodada *= 2;
+            }
+
+            // --- Pergunta ---
             if (tipo.equals("alternativa")) {
-                resultado = perguntasAlternativas(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
-                        new String[] { pergunta[1], pergunta[2], pergunta[3], pergunta[4] }, pergunta[5]);
-
+                resultado = devoured.perguntasAlternativasHabilidade(vidaBoss, vidaPersonagem, defesaBossEfetiva, defesaPersonagemEfetiva, pergunta[0],
+                        new String[] { pergunta[1], pergunta[2], pergunta[3], pergunta[4] }, pergunta[5], danoBoss, danoPlayerRodada, bonusAtaque);
             } else if (tipo.equals("completar")) {
-                resultado = perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
+                resultado = perguntasCompletarCodigo(vidaBoss, vidaPersonagem, defesaBossEfetiva, pergunta[0],
                         pergunta[1],
                         pergunta[5]);
-
             } else if (tipo.equals("escrever")) {
-                resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaPersonagem, pergunta[0],
+                resultado = perguntasEscreverCodigo(vidaBoss, vidaPersonagem, defesaBossEfetiva, pergunta[0],
                         pergunta[5]);
-
             }
 
             vidaBoss = resultado[0];
             vidaPersonagem = resultado[1];
 
-            if (vidaBoss <= 0) {
-                System.out.println("Você conseguiu vencer o boss, agora está livre para programar no mundo real.\n Mas, lembre-se,ainda pode ser devorado de novo!");
+            // --- Escudo Temporário ---
+            if (escudoTemporario && !escudoAtivo) {
+                System.out.println();
+                System.out.println("ESCUDO TEMPORÁRIO ativado! O próximo ataque do boss será anulado.");
+                System.out.println();
+                escudoAtivo = true;
+                escudoTemporario = false;
             }
 
-            tentativas++;
-        }
-        if (vidaPersonagem <= 0) {
-            System.out.println("Você perdeu!");
-        }
+            // --- Regeneração ---
+            if (regeneracao && vidaPersonagem > 0 && vidaPersonagem < vidaPersonagemMax) {
+                int cura = 10;
+                vidaPersonagem = Math.min(vidaPersonagem + cura, vidaPersonagemMax);
+                System.out.println();
+                System.out.println("Regeneração: você recuperou 10 de vida!");
+                System.out.println();
+            }
 
+            // --- Dano do boss (após resposta errada) ---
+            if (vidaBoss > 0 && vidaPersonagem > 0 && resultado[1] < vidaPersonagem) {
+                if (escudoAtivo) {
+                    System.out.println();
+                    System.out.println("O ataque do boss foi ANULADO pelo escudo!");
+                    System.out.println();
+                    escudoAtivo = false;
+                } else {
+                    int danoRecebido = (int) Math.ceil(danoBoss * (1 - defesaPersonagemEfetiva));
+                    vidaPersonagem -= danoRecebido;
+                    System.out.println();
+                    System.out.printf("O boss te atacou! Você perdeu %d de vida.\n", danoRecebido);
+                    System.out.println();
+                }
+            }
+
+            if (vidaBoss <= 0) {
+                System.out.println();
+                System.out.println("============================");
+                System.out.println("VOCÊ VENCEU!");
+                System.out.println("Você conseguiu vencer o boss, agora está livre para programar no mundo real.");
+                System.out.println("Mas, lembre-se, você pode ser devorado novamente!\n");
+                System.out.println("============================");
+                System.exit(0);
+            }
+            if (vidaPersonagem <= 0) {
+                System.out.println();
+                System.out.println("============================");
+                System.out.println("VOCÊ PERDEU!");
+                System.out.println("O boss te derrotou. Tente novamente para escapar desse loop!");
+                System.out.println("============================");
+                System.exit(0);
+            }
+            i++;
+        }
     }
 
-    // PARA PERGUNTAS DO TIPO ALTERNATIVA
-    public static int[] perguntasAlternativas(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
-            String[] opcoes, String respostaCorreta) {
+
+    /**
+     * Realiza perguntas de múltipla escolha durante a batalha, considerando habilidades. Recebe vida e defesa do boss e personagem, enunciado, opções, resposta correta, dano do boss, dano do personagem e bônus de ataque. Retorna array com vida atualizada do boss e do personagem.
+     */
+    public static int[] perguntasAlternativasHabilidade(int vidaBoss, int vidaPersonagem, float defesaBoss, float defesaPersonagem, String enunciado,
+            String[] opcoes, String respostaCorreta, int danoBoss, int danoPlayer, int bonusAtaque) {
+        System.out.println();
         System.out.println(enunciado);
         for (String opcao : opcoes) {
             System.out.println(opcao);
         }
-        input.nextLine();
+        System.out.println();
+        if (input.hasNextLine()) input.nextLine();
+        System.out.print("Sua resposta: ");
         String resposta = input.nextLine();
 
         if (resposta.equals(respostaCorreta)) {
-            int dano = (int) (15 * (1 - Boss.defesa)); // CONTA PARA CALCULAR DANO COM BASE NA DEFESA, LEMBRANDO QUE O
-                                                       // VALOR DA DEFESA PODE SER MODIFICADO COM HABILIDADES
+            int dano = (int) Math.ceil((danoBoss + bonusAtaque) * (1 - defesaBoss) + 15);
             vidaBoss -= dano;
-
-            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
-            // texto
+            System.out.println();
+            System.out.printf("Acertou! Você causou %d de dano ao boss!\n", dano);
+            System.out.println();
         } else {
-            int dano = (int) (10 * (1 - Kirk.defesa)); // INSERIR DEFESA DO PERSONAGEM, LÓGICA INCOERENTE
+            int dano = (int) Math.ceil(danoPlayer * (1 - defesaPersonagem)) + 10;
             vidaPersonagem -= dano;
-            System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
+            System.out.println();
+            System.out.printf("RESPOSTA INCORRETA! O boss te atacou e você perdeu %d de vida!\n", dano);
+            System.out.println();
         }
-
         return new int[] { vidaBoss, vidaPersonagem };
-
     }
 
-    // PERGUNTA DO TIPO COMPLETAR
+
+    /**
+     * Realiza perguntas do tipo completar código durante a batalha. Recebe vida do boss, vida do personagem, defesa, enunciado, problema e resposta correta. Retorna array com vida atualizada do boss e do personagem.
+     */
     public static int[] perguntasCompletarCodigo(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
             String problema, String respostaCorreta) {
 
         System.out.println(enunciado);
         System.out.println(problema);
-        input.nextLine();
+        System.out.println();
+        if (input.hasNextLine()) input.nextLine();
         String resposta = input.nextLine();
         if (resposta.equals(respostaCorreta)) {
-            int dano = (int) (15 * (1 - Boss.defesa));
+            int dano = (int) Math.ceil(17 * (1 - devoured.Boss.defesa));
             vidaBoss -= dano;
-            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
-                                                                                                        // texto
+            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss);
         } else {
-            int dano = (int) (10 * (1 - Kirk.defesa));
+            int dano = (int) (10 * (1 - devoured.Kirk.defesa));
             vidaPersonagem -= dano;
             System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
         }
@@ -384,28 +561,39 @@ public class devoured {
         return new int[] { vidaBoss, vidaPersonagem };
     }
 
-    // PERGUNTA DO TIPO ESCREVER
+
+    /**
+     * Realiza perguntas do tipo escrever código durante a batalha. Recebe vida do boss, vida do personagem, defesa, enunciado e resposta correta. Retorna array com vida atualizada do boss e do personagem.
+     */
     public static int[] perguntasEscreverCodigo(int vidaBoss, int vidaPersonagem, float defesa, String enunciado,
             String respostaCorreta) {
 
+        System.out.println();
         System.out.println(enunciado);
-        input.nextLine();
+        System.out.println();
+        if (input.hasNextLine()) input.nextLine();
+        System.out.print("Sua resposta: ");
         String resposta = input.nextLine();
         if (resposta.equals(respostaCorreta)) {
-            int dano = (int) (15 * (1 - Boss.defesa));
+            int dano = (int) Math.ceil(17 * (1 - Boss.defesa));
             vidaBoss -= dano;
-            System.out.printf("STATUS: vida personagem: %d vida boss %d \n", vidaPersonagem, vidaBoss); // melhorar
-                                                                                                        // texto
+            System.out.println();
+            System.out.printf("STATUS: vida personagem: %d | vida boss: %d\n", vidaPersonagem, vidaBoss);
+            System.out.println();
         } else {
             int dano = (int) (10 * (1 - Kirk.defesa));
             vidaPersonagem -= dano;
-            System.out.printf("RESPOSTA INCORRETA VOCE PERDEU VIDA E AGORA TEM %d D VIDA \n", vidaPersonagem);
+            System.out.println();
+            System.out.printf("RESPOSTA INCORRETA! Você perdeu vida e agora tem %d de vida.\n", vidaPersonagem);
+            System.out.println();
         }
 
         return new int[] { vidaBoss, vidaPersonagem };
     }
 
-    // FUNÇÃO PRINCIPAL PARA JOGAR, COLOCAR AQUI A HISTÓRIA NARRATIVA
+    /**
+     * Função principal do jogo, gerencia a narrativa, desafios e fluxo geral.
+     */
     public static void jogar() {
         registroPlayer();
         escolhaPersonagem();
@@ -453,28 +641,36 @@ public class devoured {
                     exibirNarrativa(
                             "For é uma estrutura de repetição usada para executar um bloco de código várias vezes, geralmente com um contador.");
         
-                    String[] dicas3 = {
-                            "O operador && (E lógico) exige que ambas as condições sejam verdadeiras ao mesmo tempo.",
-                            "Você pode combinar condições com números (como idade >= 18) e booleanos (como chaveValida) no mesmo if.",
-                            "Tente mudar idade ou chaveValida para ver quando o if entra ou não. Isso ajuda a entender o comportamento." };
+
         
-                    desafiosDoJogo("DESAFIO 2:Firewall Lógico ",
-                            "Digite a linha de código do if que valida ambas as condições:\n int idade = 20;\n boolean chaveValida = true;\n // Digite aqui:\n if (________________________________) \n System.out.println(\"Acesso concedido!\");",
-                            dicas3, "idade >= 18 && chaveValida");
-        
+                    // ...duplicata removida...
+
+                    // NOVOS DESAFIOS
+                    exibirNarrativa("AVINA: Você escapou do firewall, mas agora está preso em um ciclo misterioso! Só quem entende como controlar repetições conseguirá avançar. Complete o laço corretamente para seguir em frente.");
+
+
+                    desafiosDoJogo("DESAFIO 3: Laço Misterioso",
+                        "Complete o for para imprimir os números de 1 a 5:\n// Digite aqui:\nfor (________________) {\n    System.out.println(i);\n}",
+                        new String[]{"Dica: O laço deve começar em 1.", "Dica: O laço deve terminar em 5."}, "int i = 1; i <= 5; i++");
+
+                    // Após cada desafio, ganha ponto e pode comprar habilidade
+                    pontos++;
                     arvoreDeHabilidadesPopular();
-        
-                    Boss(Boss.vida, Kirk.vida, Kirk.defesa);
+
+                    // Transição para a batalha final
+                    exibirNarrativa("AVINA: Você avançou pelos desafios, mas agora enfrentará o Boss! Use suas habilidades com sabedoria antes do combate.");
+
+                    // Permite o uso das habilidades adquiridas antes da batalha
+                    int[] vidaBoss = { Boss.vida };
+                    usarHabilidades(vidaBoss);
+
+                    // Inicia a batalha final com o boss
+                    Boss(vidaBoss[0], Kirk.vida, Kirk.defesa);
             } else if(personagemEdificuldade == 2){
                 System.out.println("Teste personagem 2");
             }
         
 
+
             }
-           
 }
-
-    
-    
-
-
